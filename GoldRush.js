@@ -4,27 +4,59 @@ class GoldRush extends Matrix{
         super (row,col)
         this.row = row-1
         this.col = col-1
-        this.player1 = [0,0,1]
-        this.player2 = [row-1,col-1,2]
+        //this.player1 = [0,0,1]
+        //this.player2 = [row-1,col-1,2]
+        //this.player1_Score = 0
+        //this.player2_Score = 0
+
+        this.player1 = {
+            id: 1,
+            row: 0,
+            col: 0,
+            score: 0
+        }
+        this.player2 = {
+            id: 2,
+            row: row-1,
+            col: col-1,
+            score: 0
+        }
     }
+
+    checkPositionNote(key){
+        switch (key) {
+            case 'w':  
+                return true;
+            case '$':  
+                return true;
+            case 1:  
+                return true;
+            case 2:  
+                return true;
+            default:
+                return false;
+        }
+
+    }
+    
 
     checkMovement(player,direction){
 
-        let row = this[player][0]
-        let col = this[player][1]
+        let row = player.row
+        let col = player.col
 
         switch (direction) {
             case 'up':
-                return row == 0 || this.matrix[row-1][col] == 'c' ||this.matrix[row-1][col] == '$' ? false : true 
+                return row == 0 || this.checkPositionNote(this.matrix[row-1][col]) ? false : true 
 
             case 'down':
-               return row == this.row || this.matrix[row+1][col] =='c' || this.matrix[row+1][col] == '$' ? false : true 
+               return row == this.row || this.checkPositionNote(this.matrix[row+1][col]) ? false : true 
 
             case 'right':
-                return col == this.col || this.matrix[row][col+1] == 'c' || this.matrix[row][col+1] == '$' ? false : true 
+                return col == this.col || this.checkPositionNote(this.matrix[row][col+1]) ? false : true 
 
             case 'left':
-                return col == 0 || this.matrix[row][col-1] == 'c' || this.matrix[row][col-1] == '$' ? false : true 
+                return col == 0 || this.checkPositionNote(this.matrix[row][col-1]) ? false : true 
                 
             default:
                 break;
@@ -36,26 +68,37 @@ class GoldRush extends Matrix{
 
         if(this.checkMovement(player,direction)){
 
-            this.alter(this[player][0],this[player][1],'.')
+            let row = player.row
+            let col = player.col
+
+            this.alter(row, col, '.')
 
             switch (direction) {
                 case 'up':
-                    this[player][0]--
+                    row--
                     break;
                 case 'down':
-                    this[player][0]++
+                    row++
                     break;
                 case 'right':
-                    this[player][1]++
+                    col++
                     break;
                 case 'left':
-                    this[player][1]--
+                    col--
                     break;
                 default:
                     break;
             }
 
-            this.alter(this[player][0],this[player][1],this[player][2])
+            player.row = row
+            player.col = col
+            if (this.matrix[row][col] == 'c') {
+                player.score++
+                console.log(player.score)
+            }
+            
+            this.alter(row,col,player.id)
+            this.print()
             return true 
         }
         else{
@@ -84,12 +127,12 @@ class GoldRush extends Matrix{
         this.matrix[rowS][colS] = '$'
         this.print()
 
-        if (rowS == 0 && colS== 0) return true 
+        if (rowS == rowM && colS== colM) return true 
         
-        if (this.checkPath2(rowS-1, colS, rowM, colM)) return true
-        if (this.checkPath2(rowS, colS+1, rowM, colM)) return true       
-        if (this.checkPath2(rowS+1, colS, rowM, colM)) return true     
-        if (this.checkPath2(rowS, colS-1, rowM, colM)) return true
+        if (this.checkPath(rowS-1, colS, rowM, colM)) return true
+        if (this.checkPath(rowS, colS+1, rowM, colM)) return true       
+        if (this.checkPath(rowS+1, colS, rowM, colM)) return true     
+        if (this.checkPath(rowS, colS-1, rowM, colM)) return true
 
         this.matrix[rowS][colS] = '.'
         this.print()
