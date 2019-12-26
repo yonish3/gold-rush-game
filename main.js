@@ -1,11 +1,10 @@
 const Render = new Renderer()
+let boardMatrixCopy  
+let GoldRushBoard 
+let player1 
+let player2 
+let boardMatrix 
 
-
-
-// GoldRushMatrix.alter(0,0,'.')
-// GoldRushMatrix.alter(4,4,'.')
-
-//let  matrix = GoldRushMatrix.generateMatrix(5,5)
 
 $('#generateBoard').on('click', function () {
     
@@ -13,15 +12,26 @@ $('#generateBoard').on('click', function () {
     let colInput = $('#colInput').val()
     $('matrixRow').val("")
     $('matrixCol').val("")
+    
+    let flag = null
 
-    let GoldRushBoard = new GoldRush (rowInput, colInput)
-    const player1 = GoldRushBoard.player1
-    const player2 = GoldRushBoard.player2
+    while (!flag) {
+        GoldRushBoard = new GoldRush (rowInput, colInput)
+        boardMatrixCopy = GoldRushBoard.randomGameGenerator()
 
-    let boardMatrix = GoldRushBoard.randomGameGenerator()
+        boardMatrixCopy[0][0] = '.'
+        boardMatrixCopy[rowInput-1][colInput-1] = '.'
+
+        flag = GoldRushBoard.checkPath(0,0,rowInput-1, colInput-1, boardMatrixCopy)
+    }
+
+    player1 = GoldRushBoard.player1
+    player2 = GoldRushBoard.player2
+
     GoldRushBoard.alter(0,0,1)
     GoldRushBoard.alter(rowInput-1,colInput-1,2)
     GoldRushBoard.print() 
+    boardMatrix = GoldRushBoard.matrix
 
     Render.generateMatrix(rowInput, colInput, boardMatrix)
 })

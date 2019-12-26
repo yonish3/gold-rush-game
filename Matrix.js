@@ -7,7 +7,7 @@ class Matrix{
         this.matrix[r][c] = v
     }
 
-    print(matrix) {
+    print() {
         for (let i = 0; i < this.matrix.length; i++) {
             let line = ""
             for (let j = 0; j < this.matrix[i].length; j++) {

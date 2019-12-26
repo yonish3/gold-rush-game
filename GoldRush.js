@@ -4,6 +4,7 @@ class GoldRush extends Matrix{
         super (row,col)
         this.row = row-1
         this.col = col-1
+        this.matrixCopy = []
    
         this.player1 = {
             id: 1,
@@ -56,7 +57,6 @@ class GoldRush extends Matrix{
             default:
                 break;
         }
-
     }
 
     movePlayer(player,direction){
@@ -103,35 +103,41 @@ class GoldRush extends Matrix{
 
     randomGameGenerator(){
         for (let r = 0; r <= this.row; r++) {
+            this.matrixCopy.push([])
             for (let c = 0; c <= this.col; c++) {
                 if (Math.random()<0.35) {
                     this.matrix[r][c] = 'b'
+                    this.matrixCopy[r].push('b')
+
                 } else {
                 this.matrix[r][c] = 'c'
+                this.matrixCopy[r].push('c')
+
                 }
             }
         }
-        return this.matrix
+        return this.matrixCopy
     }
 
-    checkPath(rowS, colS, rowM, colM){
+    checkPath(rowS, colS, rowM, colM, matrix){
 
         if (rowS < 0 || colS < 0 || rowS > rowM || colS > colM) return false
     
-        if(this.matrix[rowS][colS] == 'b' || this.matrix[rowS][colS] == '$') return false
+        if(matrix[rowS][colS] == 'b' || matrix[rowS][colS] == '$') return false
 
-        this.matrix[rowS][colS] = '$'
+        matrix[rowS][colS] = '$'
         this.print()
 
         if (rowS == rowM && colS== colM) return true 
         
-        if (this.checkPath(rowS-1, colS, rowM, colM)) return true
-        if (this.checkPath(rowS, colS+1, rowM, colM)) return true       
-        if (this.checkPath(rowS+1, colS, rowM, colM)) return true     
-        if (this.checkPath(rowS, colS-1, rowM, colM)) return true
+        if (this.checkPath(rowS-1, colS, rowM, colM, matrix)) return true
+        if (this.checkPath(rowS, colS+1, rowM, colM, matrix)) return true       
+        if (this.checkPath(rowS+1, colS, rowM, colM, matrix)) return true     
+        if (this.checkPath(rowS, colS-1, rowM, colM, matrix)) return true
 
         this.print()
-
+        console.log('false')
+        
         return false
         
     }
