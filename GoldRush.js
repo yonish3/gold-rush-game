@@ -102,17 +102,27 @@ class GoldRush extends Matrix{
     }
 
     randomGameGenerator(){
+        let random 
+
         for (let r = 0; r <= this.row; r++) {
             this.matrixCopy.push([])
             for (let c = 0; c <= this.col; c++) {
-                if (Math.random()<0.35) {
-                    this.matrix[r][c] = 'b'
-                    this.matrixCopy[r].push('b')
 
-                } else {
-                this.matrix[r][c] = 'c'
-                this.matrixCopy[r].push('c')
+                random = Math.random() 
 
+                switch (true) {
+                    case random < 0.30:
+                        this.matrix[r][c] = 'b'
+                        this.matrixCopy[r].push('b')
+                        break;
+                    case random > 0.30 && random < 0.9:
+                        this.matrix[r][c] = 'c'
+                        this.matrixCopy[r].push('c')
+                        break;
+                    default:
+                        this.matrix[r][c] = '.'
+                        this.matrixCopy[r].push('.')
+                        break;
                 }
             }
         }

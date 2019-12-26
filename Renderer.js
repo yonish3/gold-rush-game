@@ -13,16 +13,29 @@ class Renderer{
                         $('#board').append(`<div class='brick'></div>`)
                         break;
                     case 'c':
-                        $('#board').append(`<div class='path'></div>`)
+                        $('#board').append(
+                            `<div class='path' style="font-size: 1em">
+                                <i class="fas fa-coins" style="color: gold;"></i>
+                            </div>`)
                         break;
                     case 1:
-                        $('#board').append(`<div class='path'></div>`)
+                        $('#board').append(
+                            `<div class='path' style="font-size: 3em">
+                                <i class="fas fa-camera fa-grin-beam" style="color: green;"></i>
+                            </div>`)
                         break;
                     case 2:
-                        $('#board').append(`<div class='path'></div>`)
+                        $('#board').append(
+                            `<div class='path' style="font-size: 3em">
+                                <i class="fas fa-camera fa-grin-beam" style="color: blue;"></i>
+                            </div>`)
                         break;
                     default:
-                        break;
+                        $('#board').append(
+                            `<div class='path' style="font-size: 1em">
+                                <i class="fas fa-circle" style="color: black;"></i>
+                            </div>`)
+                        break
                 }
             }
         }

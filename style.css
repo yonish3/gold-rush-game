@@ -1,12 +1,12 @@
 
-#board{
-    
+#board{ 
     display: grid;
     margin: auto;
     width: 80vw;
     height: 60vw;
     background-color: antiquewhite; 
     border: 5px solid antiquewhite;
+
 }
 
 .brick {
@@ -15,8 +15,11 @@
 }
 
 .path{
+    display: grid;
     background-color: turquoise;
     border: 1px solid black;
+    justify-items: center;
+    align-items: center;
 }
 
 #rowInput{
