@@ -1,0 +1,22 @@
+{
+  "name": "gold-rush-matrix-mini-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yonish3/gold-rush-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yonish3/gold-rush-game/issues"
+  },
+  "homepage": "https://github.com/yonish3/gold-rush-game#readme",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0"
+  }
+}

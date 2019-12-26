@@ -4,11 +4,7 @@ class GoldRush extends Matrix{
         super (row,col)
         this.row = row-1
         this.col = col-1
-        //this.player1 = [0,0,1]
-        //this.player2 = [row-1,col-1,2]
-        //this.player1_Score = 0
-        //this.player2_Score = 0
-
+   
         this.player1 = {
             id: 1,
             row: 0,
@@ -25,7 +21,7 @@ class GoldRush extends Matrix{
 
     checkPositionNote(key){
         switch (key) {
-            case 'w':  
+            case 'b':  
                 return true;
             case '$':  
                 return true;
@@ -39,7 +35,6 @@ class GoldRush extends Matrix{
 
     }
     
-
     checkMovement(player,direction){
 
         let row = player.row
@@ -106,23 +101,24 @@ class GoldRush extends Matrix{
         }
     }
 
-    randomCoinGenerator(){
+    randomGameGenerator(){
         for (let r = 0; r <= this.row; r++) {
             for (let c = 0; c <= this.col; c++) {
-                if (Math.random()<0.4) {
-                    this.matrix[r][c] = 'c'
+                if (Math.random()<0.35) {
+                    this.matrix[r][c] = 'b'
                 } else {
-                this.matrix[r][c] = '.'
+                this.matrix[r][c] = 'c'
                 }
             }
         }
+        return this.matrix
     }
 
     checkPath(rowS, colS, rowM, colM){
 
         if (rowS < 0 || colS < 0 || rowS > rowM || colS > colM) return false
     
-        if(this.matrix[rowS][colS] == 'c' || this.matrix[rowS][colS] == '$') return false
+        if(this.matrix[rowS][colS] == 'b' || this.matrix[rowS][colS] == '$') return false
 
         this.matrix[rowS][colS] = '$'
         this.print()
@@ -134,7 +130,6 @@ class GoldRush extends Matrix{
         if (this.checkPath(rowS+1, colS, rowM, colM)) return true     
         if (this.checkPath(rowS, colS-1, rowM, colM)) return true
 
-        this.matrix[rowS][colS] = '.'
         this.print()
 
         return false

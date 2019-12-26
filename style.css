@@ -1,5 +1,39 @@
+
 #board{
-    display: grid;
     
+    display: grid;
+    margin: auto;
+    width: 80vw;
+    height: 60vw;
+    background-color: antiquewhite; 
+    border: 5px solid antiquewhite;
+}
+
+.brick {
+    background-color: brown;
+    border: 1px solid black;
+}
+
+.path{
+    background-color: turquoise;
+    border: 1px solid black;
+}
+
+#rowInput{
+    margin: auto;
+
+
+}
+
+#colInput{
+    margin: auto;
+
+}
+
+#user1{
+
+}
+
+#user2{
 
 }
