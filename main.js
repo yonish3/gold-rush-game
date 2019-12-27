@@ -5,7 +5,8 @@ let player1
 let player2 
 let boardMatrix 
 let rowInput
-let colInpu
+let colInput
+let movementFlag = true
 
 $('#generateBoard').on('click', function () {
     
@@ -19,6 +20,7 @@ $('#generateBoard').on('click', function () {
     while (!flag) {
         GoldRushBoard = new GoldRush (rowInput, colInput)
         boardMatrixCopy = GoldRushBoard.randomGameGenerator()
+        movementFlag = true
 
         boardMatrixCopy[0][0] = '.'
         boardMatrixCopy[rowInput-1][colInput-1] = '.'
@@ -37,40 +39,42 @@ $('#generateBoard').on('click', function () {
     Render.generateMatrix(rowInput, colInput, boardMatrix)
 })
 
-// $(function(){
-//     $(document).on('keypress', function(e){
-//             console.log(e.which)
-
-//     });
-// });
-
 $(function(){
     $(document).on('keypress', function(e){
-        switch (e.which) {
-            case 119:
-                console.log('up');
-                GoldRushBoard.movePlayer(player1,'up')
-                Render.generateMatrix(rowInput, colInput, boardMatrix)
+        
+        if(movementFlag){
+            switch (e.which) {
+                case 119:
+                    console.log('up');
+                    GoldRushBoard.movePlayer(player1,'up')
+                    Render.generateMatrix(rowInput, colInput, boardMatrix)
+                    Render.updateScore(player1)
+                    break;
+                case 97:
+                    console.log('down');
+                    GoldRushBoard.movePlayer(player1,'down')
+                    Render.generateMatrix(rowInput, colInput, boardMatrix)
+                    Render.updateScore(player1)
+                    break;
+                case 115:
+                    console.log('left');
+                    GoldRushBoard.movePlayer(player1,'left')
+                    Render.generateMatrix(rowInput, colInput, boardMatrix)
+                    Render.updateScore(player1)
+                    break;
+                case 100:
+                    console.log('right');
+                    GoldRushBoard.movePlayer(player1,'right')
+                    Render.generateMatrix(rowInput, colInput, boardMatrix)
+                    Render.updateScore(player1)
+                    break;
+            }
+        }
 
-                break;
-            case 97:
-                console.log('down');
-                GoldRushBoard.movePlayer(player1,'down')
-                Render.generateMatrix(rowInput, colInput, boardMatrix)
-
-                break;
-            case 115:
-                console.log('left');
-                GoldRushBoard.movePlayer(player1,'left')
-                Render.generateMatrix(rowInput, colInput, boardMatrix)
-
-                break;
-            case 100:
-                console.log('right');
-                GoldRushBoard.movePlayer(player1,'right')
-                Render.generateMatrix(rowInput, colInput, boardMatrix)
-
-                break;
+        if (GoldRushBoard){
+            if (player1.score==10 || player2.score==10) {
+                movementFlag = false
+            }
         }
     })
 

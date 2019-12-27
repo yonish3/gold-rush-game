@@ -3,9 +3,10 @@ class Renderer{
     generateMatrix(row, col, board){
              
         $('#board').empty()
+
         $('#board').css('grid-template-rows', `repeat(${row}, 1fr)`)
         $('#board').css('grid-template-columns', `repeat(${col}, 1fr)`)
-
+        $(`#win`).text("")
         for (let r = 0; r < row; r++) {
             for (let c = 0; c < col; c++) {
                 switch (board[r][c]) {
@@ -38,6 +39,15 @@ class Renderer{
                         break
                 }
             }
+        }
+    }
+
+    updateScore(player){
+        $(`#player${player.id} > h3:nth-child(2)`).text(`Score: ${player.score}`)
+        if (player.score == 10) {
+            $(`#win`).text(`Player ${player.id} WIN!!!`)
+            $(`#win`).css(`background-color`, `lightseagreen`)
+            
         }
     }
 }

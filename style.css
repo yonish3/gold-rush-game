@@ -4,12 +4,12 @@
     grid-template-rows: 6vw 4vw 4vw 10vw 60vw 6vw;
     grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
     grid-template-areas: 
-    "h   h  h   h   h"
-    "e1 inr e3 inc e2"
-    "e1 bt  bt  bt e2"
-    "e1 p1  e4  p2 e2"
-    "br br  br  br br"
-    "f  f   f   f  f";
+    "h   h    h    h    h"
+    "e1  inr  e3   inc  e2"
+    "e1  bt   bt   bt   e2"
+    "p1  win  win  win  p2"
+    "br  br   br   br   br"
+    "f   f    f    f    f";
     background-color: lightgray;
     /* grid-gap: 5px; */
 
@@ -25,12 +25,19 @@ h1{
 #player1{
     grid-area: p1;
     align-self: center;
-    justify-self: center;
+    justify-self: end;
 }
 
 #player2{
     grid-area: p2;
     align-self: center;
+    align-self: center;
+    justify-self: start;
+
+}
+
+#win{
+    grid-area: win;
     justify-self: center;
 }
 
