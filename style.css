@@ -1,5 +1,41 @@
+#container{
+    
+    display: grid;
+    grid-template-rows: 6vw 4vw 4vw 10vw 60vw 6vw;
+    grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
+    grid-template-areas: 
+    "h   h  h   h   h"
+    "e1 inr e3 inc e2"
+    "e1 bt  bt  bt e2"
+    "e1 p1  e4  p2 e2"
+    "br br  br  br br"
+    "f  f   f   f  f";
+    background-color: lightgray;
+    /* grid-gap: 5px; */
+
+}
+
+h1{
+    grid-area: h;
+    align-self: center;
+    justify-self: center;
+
+}
+
+#player1{
+    grid-area: p1;
+    align-self: center;
+    justify-self: center;
+}
+
+#player2{
+    grid-area: p2;
+    align-self: center;
+    justify-self: center;
+}
 
 #board{ 
+    grid-area: br;
     display: grid;
     margin: auto;
     width: 80vw;
@@ -23,20 +59,23 @@
 }
 
 #rowInput{
+    grid-area: inr;
     margin: auto;
 
 
 }
 
 #colInput{
+    grid-area: inc;
     margin: auto;
 
 }
 
-#user1{
 
-}
-
-#user2{
+#generateBoard{
+    grid-area: bt;
+    margin: auto;
+    align-self: center;
+    justify-self: center;
 
 }
