@@ -145,16 +145,17 @@ class GoldRush extends Matrix{
         console.log('\n')
     }
 
-    checkPath(rowS, colS, rowM, colM, matrix){
+    checkPath = (rowS, colS, rowM, colM, matrix)=>{
 
-        if (rowS < 0 || colS < 0 || rowS > rowM || colS > colM) return false
-    
+        if (rowS < 0 || colS < 0 || rowS > this.row || colS > this.col) return false
         if(matrix[rowS][colS] == 'b' || matrix[rowS][colS] == '$' || matrix[rowS][colS]== '2') return false
 
         matrix[rowS][colS] = '$'
 
         this.compPath.push({'row': rowS, 'col': colS})
         this.printCopy()
+
+        console.log(this.row, ' and ',this.col )
 
         if (rowS == rowM && colS== colM) return true 
         
@@ -177,9 +178,9 @@ class GoldRush extends Matrix{
             this.compPath = []
             this.randomGameGenerator()
             this.matrixCopy[0][0] = '.'
-            this.matrixCopy[this.row-1][this.col-1] = '.'
+            this.matrixCopy[this.row][this.col] = '.'
 
-            flag = GoldRushBoard.checkPath(0,0,this.row-1, this.col-1, this.matrixCopy)
+            flag = GoldRushBoard.checkPath(0,0,this.row, this.col, this.matrixCopy)
         }
         
         return true
