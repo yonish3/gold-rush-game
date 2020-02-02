@@ -63,10 +63,9 @@ $(function(){
             }
         }
 
-        // if (GoldRushBoard) {
-        //     let  updatePath = []
-        //     computer(0, 0, rowInput, colInput, GoldRushBoard, null, 0, updatePath)
-        // }
+        if (GoldRushBoard) {
+            computer(GoldRushBoard)
+        }
                    
     })
 

@@ -106,7 +106,6 @@ class GoldRush extends Matrix{
     randomGameGenerator(){
         this.matrix =this.generateMatrix(this.row+1, this.col+1)
         this.matrixCopy =[]
-        this.compPath = []
         let random 
 
         for (let r = 0; r <= this.row; r++) {
@@ -175,11 +174,11 @@ class GoldRush extends Matrix{
         let flag = false
 
         while (!flag) {
+            this.compPath = []
             this.randomGameGenerator()
-    
             this.matrixCopy[0][0] = '.'
             this.matrixCopy[this.row-1][this.col-1] = '.'
-    
+
             flag = GoldRushBoard.checkPath(0,0,this.row-1, this.col-1, this.matrixCopy)
         }
         
