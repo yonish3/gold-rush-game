@@ -17,6 +17,7 @@ class Matrix{
         }
         console.log('\n')
     }
+    
 
     generateMatrix(row,col) {
         let matrix = []

@@ -7,8 +7,8 @@ class Renderer{
         $('#board').css('grid-template-rows', `repeat(${row}, 1fr)`)
         $('#board').css('grid-template-columns', `repeat(${col}, 1fr)`)
         $(`#win`).text("")
-        for (let r = 0; r < row; r++) {
-            for (let c = 0; c < col; c++) {
+        for (let r = 0; r < board.length; r++) {
+            for (let c = 0; c < board[r].length; c++) {
                 switch (board[r][c]) {
                     case 'b':
                         $('#board').append(`<div class='brick'></div>`)
@@ -19,7 +19,7 @@ class Renderer{
                                 <i class="fas fa-coins" style="color: gold;"></i>
                             </div>`)
                         break;
-                    case 1:
+                    case 1: 
                         $('#board').append(
                             `<div class='path' style="font-size: 3em">
                                 <i class="fas fa-camera fa-grin-beam" style="color: green;"></i>
@@ -31,7 +31,7 @@ class Renderer{
                                 <i class="fas fa-camera fa-grin-beam" style="color: blue;"></i>
                             </div>`)
                         break;
-                    default:
+                    case '.': 
                         $('#board').append(
                             `<div class='path' style="font-size: 1em">
                                 <i class="fas fa-circle" style="color: black;"></i>
