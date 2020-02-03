@@ -22,13 +22,6 @@ const copyMatrix = function(matrix, pathSoFar, goldMap){
     return matrixCopy
 }
 
-// getNextCoin = function (goldMap, coinIndex) {  
-//     for (let i = coinIndex ; coinIndex < goldMap.length; i++) {
-//         if 
-        
-//     }
-// }
-
 const computer = function(GoldRushBoard){
     let rowM = GoldRushBoard.row
     let colM = GoldRushBoard.col
@@ -40,19 +33,25 @@ const computer = function(GoldRushBoard){
         let matrixCopy = copyMatrix(GoldRushBoard.matrix, pathSoFar, goldMap)
         let path = [...GoldRushBoard.compPath]
         GoldRushBoard.compPath = []
+        let location = {row:0,col:0}
 //need to start us the gold map
 //GoldRushBoard.checkPath(path[1].row, path[1].col, rowM, colM, matrixCopy)
 
-        GoldRushBoard.checkPath(path[0].row, path[0].col, goldMap[0].row, goldMap[0].col, matrixCopy)
+        GoldRushBoard.checkPath(location.row, location.col, goldMap[0].row, goldMap[0].col, matrixCopy)
         path = [...GoldRushBoard.compPath]
-
-        GoldRushBoard.alter(path[0].row, path[0].col,'.')
-        GoldRushBoard.alter(path[1].row, path[1].col, 1)
-        
-        GoldRushBoard.compPath.splice(0,1)
         goldMap.splice(0,1)
 
-        Render.generateMatrix(5, 5, GoldRushBoard.matrix)
+        for (let i = 0; i < path.length-1; i++) {
+            
+            GoldRushBoard.alter(path[i].row, path[i].col,'.')
+            GoldRushBoard.alter(path[i+1].row, path[i+1].col, 1)
+
+            Render.generateMatrix(5, 5, GoldRushBoard.matrix)
+
+            location.row = path[i+1].row
+            location.col = path[i+1].col
+        }
+        
 
         pathSoFar.push({
             row: path[1].row, 
