@@ -1,37 +1,61 @@
-const copyMatrix = function(matrix, pathSoFar){
+const copyMatrix = function(matrix, pathSoFar, goldMap){
     let matrixCopy = []
         
     for (let r = 0; r < matrix.length; r++) {
         matrixCopy.push([])
         for (let c = 0; c < matrix[r].length; c++) {
             matrixCopy[r].push(matrix[r][c])
+            if (matrix[r][c] == 'c') {
+                goldMap.push({
+                    row: r,
+                    col: c
+                })
+            }
         }
     }
 
-    for (let i = 0; i < pathSoFar.length; i++) {
-        matrixCopy[pathSoFar[i].row][pathSoFar[i].col] = '$'
-    }
+    // for (let i = 0; i < pathSoFar.length; i++) {
+    //     matrixCopy[pathSoFar[i].row][pathSoFar[i].col] = '$'
+    // }
 
     return matrixCopy
 }
+
+// getNextCoin = function (goldMap, coinIndex) {  
+//     for (let i = coinIndex ; coinIndex < goldMap.length; i++) {
+//         if 
+        
+//     }
+// }
+
+
 
 
 const computer = function(GoldRushBoard){
     let rowM = GoldRushBoard.row
     let colM = GoldRushBoard.col
     let pathSoFar = [{row:0,col:0}]
+    let goldMap = []
     let flag = true
     
     while (flag) {
-        let matrixCopy = copyMatrix(GoldRushBoard.matrix, pathSoFar)
+        let matrixCopy = copyMatrix(GoldRushBoard.matrix, pathSoFar, goldMap)
         let path = [...GoldRushBoard.compPath]
         GoldRushBoard.compPath = []
-        GoldRushBoard.checkPath(path[1].row, path[1].col, rowM, colM, matrixCopy)
-        
+//need to start us the gold map
+//GoldRushBoard.checkPath(path[1].row, path[1].col, rowM, colM, matrixCopy)
+
+        GoldRushBoard.checkPath(path[0].row, path[0].col, goldMap[0].row, goldMap[0].col, matrixCopy)
+        path = [...GoldRushBoard.compPath]
+
         GoldRushBoard.alter(path[0].row, path[0].col,'.')
-        GoldRushBoard.alter(path[1].row, path[1].col,1)
+        GoldRushBoard.alter(path[1].row, path[1].col, 1)
+        
+        GoldRushBoard.compPath.splice(0,1)
+        goldMap.splice(0,1)
 
         Render.generateMatrix(5, 5, GoldRushBoard.matrix)
+
         pathSoFar.push({
             row: path[1].row, 
             col: path[1].col
