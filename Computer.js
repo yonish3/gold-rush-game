@@ -1,6 +1,7 @@
 const copyMatrix = function(matrix, pathSoFar, goldMap){
     let matrixCopy = []
-        
+    goldMap = []
+    
     for (let r = 0; r < matrix.length; r++) {
         matrixCopy.push([])
         for (let c = 0; c < matrix[r].length; c++) {
@@ -27,9 +28,6 @@ const copyMatrix = function(matrix, pathSoFar, goldMap){
         
 //     }
 // }
-
-
-
 
 const computer = function(GoldRushBoard){
     let rowM = GoldRushBoard.row
