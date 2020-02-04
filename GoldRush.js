@@ -152,17 +152,31 @@ class GoldRush extends Matrix{
 
         matrix[rowS][colS] = '$'
 
-        this.compPath.push({'row': rowS, 'col': colS})
         this.printCopy()
 
-        console.log(this.row, ' and ',this.col )
+        if (rowS == rowM && colS== colM){
+            this.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        } 
 
-        if (rowS == rowM && colS== colM) return true 
-        
-        if (this.checkPath(rowS-1, colS, rowM, colM, matrix)) return true
-        if (this.checkPath(rowS, colS+1, rowM, colM, matrix)) return true       
-        if (this.checkPath(rowS+1, colS, rowM, colM, matrix)) return true     
-        if (this.checkPath(rowS, colS-1, rowM, colM, matrix)) return true
+        if (this.checkPath(rowS-1, colS, rowM, colM, matrix)){
+            this.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        } 
+        if (this.checkPath(rowS, colS+1, rowM, colM, matrix)){
+            this.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        }       
+        if (this.checkPath(rowS+1, colS, rowM, colM, matrix)){
+            this.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        }      
+        if (this.checkPath(rowS, colS-1, rowM, colM, matrix)) {
+            this.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        }
+
+        //this.compPath.push({'row': rowS, 'col': colS})
 
         this.printCopy()
         console.log('false')
