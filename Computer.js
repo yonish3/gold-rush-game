@@ -50,6 +50,9 @@ const computer = function(GoldRushBoard){
         GoldRushBoard.compPath = []
         closestCoin = getClosestCoin(location, GoldRushBoard.goldMap)
 
+        //do i relly need a matrix copy?
+        // how do i make the recursive return the shortest way?
+
         GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy)
         path = [...GoldRushBoard.compPath]
         
