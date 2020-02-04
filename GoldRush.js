@@ -6,6 +6,7 @@ class GoldRush extends Matrix{
         this.col = col-1
         this.matrixCopy = []
         this.compPath = []
+        this.goldMap = []
         
    
         this.player1 = {
@@ -152,7 +153,7 @@ class GoldRush extends Matrix{
 
         matrix[rowS][colS] = '$'
 
-        this.printCopy()
+        this.printAnyMatrix(matrix)
 
         if (rowS == rowM && colS== colM){
             this.compPath.unshift({'row': rowS, 'col': colS})
@@ -176,9 +177,7 @@ class GoldRush extends Matrix{
             return true  
         }
 
-        //this.compPath.push({'row': rowS, 'col': colS})
-
-        this.printCopy()
+        this.printAnyMatrix(matrix)
         console.log('false')
         
         return false

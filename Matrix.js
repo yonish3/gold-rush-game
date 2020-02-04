@@ -18,6 +18,16 @@ class Matrix{
         console.log('\n')
     }
     
+    printAnyMatrix(matrix) {
+        for (let i = 0; i < matrix.length; i++) {
+            let line = ""
+            for (let j = 0; j < matrix[i].length; j++) {
+                line += (matrix[i][j] + "\t")
+            }
+            console.log(line)
+        }
+        console.log('\n')
+    }
 
     generateMatrix(row,col) {
         let matrix = []
