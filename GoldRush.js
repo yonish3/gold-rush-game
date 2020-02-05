@@ -13,13 +13,15 @@ class GoldRush extends Matrix{
             id: 1,
             row: 0,
             col: 0,
-            score: 0
+            score: 0,
+            lastLoinLocation: null
         }
         this.player2 = {
             id: 2,
             row: row-1,
             col: col-1,
-            score: 0
+            score: 0,
+            lastLoinLocation: null
         }
     }
 
@@ -93,6 +95,10 @@ class GoldRush extends Matrix{
             if (this.matrix[row][col] == 'c') {
                 player.score++
                 console.log(player.score)
+                player.lastLoinLocation = {
+                    row: row,
+                    col:col
+                }
             }
             
             this.alter(row,col,player.id)

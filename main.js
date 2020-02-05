@@ -72,7 +72,10 @@ $(function(){
                 computer(GoldRushBoard, clearTimeoutArry)
             }
 
-            if (lastScore != GoldRushBoard.player2.score ){
+            //if (lastScore != GoldRushBoard.player2.score ){
+
+            // needs to add the comp next coin from the goldMap
+            if (GoldRushBoard.player2.lastLoinLocation.row == GoldRushBoard.|| GoldRushBoard.player2.lastLoinLocation.row ==){
                 lastScore = GoldRushBoard.player2.score
                 clearTimeoutArry.forEach(setTimeoutMove => {
                     clearTimeout(setTimeoutMove)
