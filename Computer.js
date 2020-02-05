@@ -37,11 +37,13 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
     let location = {row:GoldRushBoard.player1.row, col:GoldRushBoard.player1.col}
     let flag = true
     let closestCoin = {}
-    
+
+    GoldRushBoard.goldMap = []
     let matrixCopy = copyMatrix(GoldRushBoard.matrix, GoldRushBoard.goldMap)
     let round  = 0
 
-    while (flag) {
+    if(GoldRushBoard.goldMap.length==0) return
+    
         let dummyMap = []
         matrixCopy = copyMatrix(GoldRushBoard.matrix, dummyMap)
         let path = [...GoldRushBoard.compPath]
@@ -70,9 +72,12 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
                 GoldRushBoard.player1.col = path[k+1].col
 
                 Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
-                
 
-            }, 1000*r  )
+                if(k == path.length-2){
+                    computer(GoldRushBoard, clearTimeoutArry)
+                }
+
+            }, 500*r  )
 
             clearTimeoutArry.push(setTimeoutMove)
 
@@ -80,11 +85,11 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
             location.col = path[i+1].col
         }
 
-        GoldRushBoard.goldMap.splice(closestCoin.goldIndex,1)
+        //GoldRushBoard.goldMap.splice(closestCoin.goldIndex,1)
 
         if(GoldRushBoard.goldMap.length == 0){
             flag = false
         }
      }    
-}
+
 

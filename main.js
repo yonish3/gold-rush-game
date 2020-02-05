@@ -68,7 +68,7 @@ $(function(){
                     break;
             }
 
-            if(GoldRushBoard.goldMap.length != 0 && setTimeoutMove.length === 0){
+            if(GoldRushBoard.goldMap.length != 0 && clearTimeoutArry.length === 0){
                 computer(GoldRushBoard, clearTimeoutArry)
             }
 
@@ -77,6 +77,7 @@ $(function(){
                 clearTimeoutArry.forEach(setTimeoutMove => {
                     clearTimeout(setTimeoutMove)
                 })
+                clearTimeoutArry = []
                 computer(GoldRushBoard, clearTimeoutArry)
             }
 
