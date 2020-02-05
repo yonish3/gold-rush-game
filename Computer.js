@@ -31,14 +31,12 @@ const getClosestCoin = function (location, goldMap) {
     return closestCoin
 }
 
-const computer = function(GoldRushBoard){
+const computer = function(GoldRushBoard, clearTimeoutArry){
     let rowM = GoldRushBoard.row +1
     let colM = GoldRushBoard.col +1
-    let location = {row:0,col:0}
+    let location = {row:GoldRushBoard.player1.row, col:GoldRushBoard.player1.col}
     let flag = true
     let closestCoin = {}
-    
-    GoldRushBoard.goldMap = []
     
     let matrixCopy = copyMatrix(GoldRushBoard.matrix, GoldRushBoard.goldMap)
     let round  = 0
@@ -50,9 +48,6 @@ const computer = function(GoldRushBoard){
         GoldRushBoard.compPath = []
         closestCoin = getClosestCoin(location, GoldRushBoard.goldMap)
 
-        //do i relly need a matrix copy?
-        // how do i make the recursive return the shortest way?
-
         GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy)
         path = [...GoldRushBoard.compPath]
         
@@ -60,26 +55,34 @@ const computer = function(GoldRushBoard){
             let r = ++round 
             console.log('r', r)
             let k = i;
-            setTimeout(function(){
+            let setTimeoutMove = setTimeout(function(){
                 console.log('count ', k);
         
+                if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col]=='c'){
+                    GoldRushBoard.player1.score ++
+                    Render.updateScore(GoldRushBoard.player1)
+                }
+
                 GoldRushBoard.alter(path[k].row, path[k].col,'.')
                 GoldRushBoard.alter(path[k+1].row, path[k+1].col, 1)
 
+                GoldRushBoard.player1.row = path[k+1].row
+                GoldRushBoard.player1.col = path[k+1].col
+
                 Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
+                
 
             }, 1000*r  )
 
-            // matrixCopy[path[i].row][path[i].col] = '.'
-            // matrixCopy[path[i+1].row][path[i+1].col] = 1
+            clearTimeoutArry.push(setTimeoutMove)
 
             location.row = path[i+1].row
             location.col = path[i+1].col
         }
 
         GoldRushBoard.goldMap.splice(closestCoin.goldIndex,1)
-        if(GoldRushBoard.goldMap.length == 0){
 
+        if(GoldRushBoard.goldMap.length == 0){
             flag = false
         }
      }    

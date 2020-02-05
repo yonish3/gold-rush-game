@@ -6,8 +6,10 @@ let player2
 let boardMatrix 
 let rowInput
 let colInput
-let movementFlag = true
+let movementFlag = false
 let playerMoving 
+let clearTimeoutArry =[]
+let lastScore = 0
 
 $('#generateBoard').on('click', function () {
     
@@ -28,6 +30,10 @@ $('#generateBoard').on('click', function () {
     boardMatrix = GoldRushBoard.matrix
 
     Render.generateMatrix(rowInput, colInput, boardMatrix)
+
+    if (GoldRushBoard) {
+        computer(GoldRushBoard, clearTimeoutArry)
+    }
 })
 
 $(function(){
@@ -61,10 +67,19 @@ $(function(){
                     Render.updateScore(playerMoving)
                     break;
             }
-        }
 
-        if (GoldRushBoard) {
-            computer(GoldRushBoard)
+            if(GoldRushBoard.goldMap.length != 0 && setTimeoutMove.length === 0){
+                computer(GoldRushBoard, clearTimeoutArry)
+            }
+
+            if (lastScore != GoldRushBoard.player2.score ){
+                lastScore = GoldRushBoard.player2.score
+                clearTimeoutArry.forEach(setTimeoutMove => {
+                    clearTimeout(setTimeoutMove)
+                })
+                computer(GoldRushBoard, clearTimeoutArry)
+            }
+
         }
                    
     })
