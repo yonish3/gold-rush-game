@@ -35,61 +35,47 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
     let rowM = GoldRushBoard.row +1
     let colM = GoldRushBoard.col +1
     let location = {row:GoldRushBoard.player1.row, col:GoldRushBoard.player1.col}
-    let flag = true
     let closestCoin = {}
+    let path = GoldRushBoard.compPath = []
 
     GoldRushBoard.goldMap = []
     let matrixCopy = copyMatrix(GoldRushBoard.matrix, GoldRushBoard.goldMap)
-    let round  = 0
-
     if(GoldRushBoard.goldMap.length==0) return
+
+    closestCoin = getClosestCoin(location, GoldRushBoard.goldMap)
+    GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy)
     
-        let dummyMap = []
-        matrixCopy = copyMatrix(GoldRushBoard.matrix, dummyMap)
-        let path = [...GoldRushBoard.compPath]
-        GoldRushBoard.compPath = []
-        closestCoin = getClosestCoin(location, GoldRushBoard.goldMap)
+    for (let i = 0; i < path.length-1; i++) {
 
-        GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy)
-        path = [...GoldRushBoard.compPath]
-        
-        for (let i = 0; i < path.length-1; i++) {
-            let r = ++round 
-            console.log('r', r)
-            let k = i;
-            let setTimeoutMove = setTimeout(function(){
-                console.log('count ', k);
-        
-                if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col]=='c'){
-                    GoldRushBoard.player1.score ++
-                    Render.updateScore(GoldRushBoard.player1)
-                }
+        let k = i
 
-                GoldRushBoard.alter(path[k].row, path[k].col,'.')
-                GoldRushBoard.alter(path[k+1].row, path[k+1].col, 1)
+        let setTimeoutMove = setTimeout(function(){
+            console.log('count ', k);
+    
+            if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col]=='c'){
+                GoldRushBoard.player1.score ++
+                Render.updateScore(GoldRushBoard.player1)
+            }
 
-                GoldRushBoard.player1.row = path[k+1].row
-                GoldRushBoard.player1.col = path[k+1].col
+            GoldRushBoard.alter(path[k].row, path[k].col,'.')
+            GoldRushBoard.alter(path[k+1].row, path[k+1].col, 1)
 
-                Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
+            GoldRushBoard.player1.row = path[k+1].row
+            GoldRushBoard.player1.col = path[k+1].col
 
-                if(k == path.length-2){
-                    computer(GoldRushBoard, clearTimeoutArry)
-                }
+            Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
 
-            }, 500*r  )
+            if(k == path.length-2){
+                computer(GoldRushBoard, clearTimeoutArry)
+            }
 
-            clearTimeoutArry.push(setTimeoutMove)
+        }, 500*(k+1))
 
-            location.row = path[i+1].row
-            location.col = path[i+1].col
-        }
+        clearTimeoutArry.push(setTimeoutMove)
 
-        //GoldRushBoard.goldMap.splice(closestCoin.goldIndex,1)
-
-        if(GoldRushBoard.goldMap.length == 0){
-            flag = false
-        }
-     }    
+        location.row = path[i+1].row
+        location.col = path[i+1].col
+    }
+}    
 
 
