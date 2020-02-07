@@ -37,12 +37,14 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
     let location = {row:GoldRushBoard.player1.row, col:GoldRushBoard.player1.col}
     let closestCoin = {}
     let path = GoldRushBoard.compPath = []
-
+    clearTimeoutArry = []
     GoldRushBoard.goldMap = []
     let matrixCopy = copyMatrix(GoldRushBoard.matrix, GoldRushBoard.goldMap)
     if(GoldRushBoard.goldMap.length==0) return
 
     closestCoin = getClosestCoin(location, GoldRushBoard.goldMap)
+    GoldRushBoard.compClosestCoin =  {row: closestCoin.row, col: closestCoin.col}
+
     GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy)
     
     for (let i = 0; i < path.length-1; i++) {
@@ -50,7 +52,6 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
         let k = i
 
         let setTimeoutMove = setTimeout(function(){
-            console.log('count ', k);
     
             if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col]=='c'){
                 GoldRushBoard.player1.score ++
@@ -59,17 +60,16 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
 
             GoldRushBoard.alter(path[k].row, path[k].col,'.')
             GoldRushBoard.alter(path[k+1].row, path[k+1].col, 1)
+            Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
 
             GoldRushBoard.player1.row = path[k+1].row
             GoldRushBoard.player1.col = path[k+1].col
-
-            Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
 
             if(k == path.length-2){
                 computer(GoldRushBoard, clearTimeoutArry)
             }
 
-        }, 500*(k+1))
+        }, 1000*(k+1))
 
         clearTimeoutArry.push(setTimeoutMove)
 

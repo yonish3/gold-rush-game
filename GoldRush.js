@@ -7,21 +7,22 @@ class GoldRush extends Matrix{
         this.matrixCopy = []
         this.compPath = []
         this.goldMap = []
-        
+        this.compClosestCoin = {}
+
    
         this.player1 = {
             id: 1,
             row: 0,
             col: 0,
             score: 0,
-            lastLoinLocation: null
+            lastCoinLocation: null
         }
         this.player2 = {
             id: 2,
             row: row-1,
             col: col-1,
             score: 0,
-            lastLoinLocation: null
+            lastCoinLocation: null
         }
     }
 
@@ -94,15 +95,13 @@ class GoldRush extends Matrix{
             player.col = col
             if (this.matrix[row][col] == 'c') {
                 player.score++
-                console.log(player.score)
-                player.lastLoinLocation = {
+                player.lastCoinLocation = {
                     row: row,
                     col:col
                 }
             }
             
             this.alter(row,col,player.id)
-            this.print()
             return true 
         }
         else{
@@ -159,7 +158,7 @@ class GoldRush extends Matrix{
 
         matrix[rowS][colS] = '$'
 
-        this.printAnyMatrix(matrix)
+        //this.printAnyMatrix(matrix)
 
         if (rowS == rowM && colS== colM){
             this.compPath.unshift({'row': rowS, 'col': colS})
@@ -183,8 +182,8 @@ class GoldRush extends Matrix{
             return true  
         }
 
-        this.printAnyMatrix(matrix)
-        console.log('false')
+        //this.printAnyMatrix(matrix)
+        //console.log('false')
         
         return false
         

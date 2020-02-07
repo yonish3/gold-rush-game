@@ -68,20 +68,16 @@ $(function(){
                     break;
             }
 
-            if(GoldRushBoard.goldMap.length != 0 && clearTimeoutArry.length === 0){
-                computer(GoldRushBoard, clearTimeoutArry)
-            }
+            let lastCoinLocation = JSON.stringify(GoldRushBoard.player2.lastCoinLocation)
+            let compClosestCoin = JSON.stringify(GoldRushBoard.compClosestCoin)
+            let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
 
-            //if (lastScore != GoldRushBoard.player2.score ){
-
-            // needs to add the comp next coin from the goldMap
-            if (GoldRushBoard.player2.lastLoinLocation.row == GoldRushBoard.|| GoldRushBoard.player2.lastLoinLocation.row ==){
-                lastScore = GoldRushBoard.player2.score
-                clearTimeoutArry.forEach(setTimeoutMove => {
-                    clearTimeout(setTimeoutMove)
-                })
-                clearTimeoutArry = []
-                computer(GoldRushBoard, clearTimeoutArry)
+            if (didPlayerTookCompCoin){
+                    clearTimeoutArry.forEach(setTimeoutMove => {
+                        clearTimeout(setTimeoutMove)
+                    })
+                    clearTimeoutArry = []
+                    closestCoin = computer(GoldRushBoard, clearTimeoutArry)
             }
 
         }
