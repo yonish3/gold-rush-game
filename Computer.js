@@ -50,22 +50,34 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
     for (let i = 0; i < path.length-1; i++) {
 
         let k = i
+        let OverLappingPlayersFlag = false
 
         let setTimeoutMove = setTimeout(function(){
     
-            if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col]=='c'){
-                GoldRushBoard.player1.score ++
-                Render.updateScore(GoldRushBoard.player1)
+            if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col] === 2 ){
+                clearTimeoutArry.forEach(setTimeoutMove => {
+                    clearTimeout(setTimeoutMove)
+                })
+                OverLappingPlayersFlag = true
+                // the for loop is staying in the memory?? needs to check that
+                //i = path.length
             }
 
-            GoldRushBoard.alter(path[k].row, path[k].col,'.')
-            GoldRushBoard.alter(path[k+1].row, path[k+1].col, 1)
-            Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
+            if(!OverLappingPlayersFlag){
+                if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col]=='c'){
+                    GoldRushBoard.player1.score ++
+                    Render.updateScore(GoldRushBoard.player1)
+                }
 
-            GoldRushBoard.player1.row = path[k+1].row
-            GoldRushBoard.player1.col = path[k+1].col
+                GoldRushBoard.alter(path[k].row, path[k].col,'.')
+                GoldRushBoard.alter(path[k+1].row, path[k+1].col, 1)
+                Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
 
-            if(k == path.length-2){
+                GoldRushBoard.player1.row = path[k+1].row
+                GoldRushBoard.player1.col = path[k+1].col
+            }
+
+            if(k == path.length-2 || OverLappingPlayersFlag){
                 computer(GoldRushBoard, clearTimeoutArry)
             }
 

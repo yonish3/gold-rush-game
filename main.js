@@ -68,6 +68,10 @@ $(function(){
                     break;
             }
 
+            if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.compPath.length === 0){
+                computer(GoldRushBoard, clearTimeoutArry)
+            }
+
             let lastCoinLocation = JSON.stringify(GoldRushBoard.player2.lastCoinLocation)
             let compClosestCoin = JSON.stringify(GoldRushBoard.compClosestCoin)
             let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
