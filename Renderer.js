@@ -1,9 +1,8 @@
 class Renderer{
 
     generateMatrix(row, col, board){
-             
-        $('#board').empty()
 
+        $('#board').empty()
         $('#board').css('grid-template-rows', `repeat(${row}, 1fr)`)
         $('#board').css('grid-template-columns', `repeat(${col}, 1fr)`)
         $(`#win`).text("")
@@ -40,6 +39,7 @@ class Renderer{
                 }
             }
         }
+
     }
 
     updateScore(player){
@@ -49,6 +49,39 @@ class Renderer{
             $(`#win`).css(`background-color`, `lightseagreen`)
             
         }
+    }
+
+    addRemoveCompOptions(selection, playerId){
+        let appendDiv
+
+        if(playerId === 'dropDownPlayer1'){
+            appendDiv = 'comp1-OptionsDiv'
+        }else{
+            appendDiv = 'comp2-OptionsDiv'
+        }
+
+        if(selection === 'computer'){
+            $(`#${appendDiv}`).append(`
+                <label for="speed">Speed: </label>
+                <select id="speed">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <label for="algorithm">Algorithm: </label>
+                <select id="algorithm">
+                    <option value="DFS">DFS</option>
+                </select>`
+            )
+            return
+        }
+        if(playerId === 'dropDownPlayer1'){
+            $('#comp1-OptionsDiv').empty()
+            return
+        }
+        $('#comp2-OptionsDiv').empty()
     }
 }
     

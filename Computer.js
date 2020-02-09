@@ -40,27 +40,25 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
     clearTimeoutArry = []
     GoldRushBoard.goldMap = []
     let matrixCopy = copyMatrix(GoldRushBoard.matrix, GoldRushBoard.goldMap)
+
     if(GoldRushBoard.goldMap.length==0) return
 
     closestCoin = getClosestCoin(location, GoldRushBoard.goldMap)
     GoldRushBoard.compClosestCoin =  {row: closestCoin.row, col: closestCoin.col}
 
     GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy)
-
     
 
     for (let i = 0; i < path.length-1; i++) {
 
         let k = i
 
-
         let setTimeoutMove = setTimeout(function(){
-            
+
             let OverLappingPlayersFlag = false
 
             if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col] === 2 ){
                 OverLappingPlayersFlag = true
-                // the for loop is staying in the memory?? needs to check that
                 i = path.length
                 clearTimeoutArry.forEach(setTimeoutMove => {
                     clearTimeout(setTimeoutMove)
@@ -87,22 +85,11 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
 
         }, 1000*(k+1))
 
-        //still relevant??
-        // if(OverLappingPlayersFlag){
-        //     break
-        // }
         clearTimeoutArry.push(setTimeoutMove)
 
         location.row = path[i+1].row
         location.col = path[i+1].col
     }
-
-    // if (OverLappingPlayersFlag){
-    //     clearTimeoutArry.forEach(setTimeoutMove => {
-    //         clearTimeout(setTimeoutMove)
-    //     })
-    //     computer(GoldRushBoard, clearTimeoutArry)
-    // }
 }    
 
 

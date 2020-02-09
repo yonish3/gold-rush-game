@@ -1,25 +1,23 @@
 #container{
     
     display: grid;
-    grid-template-rows: 6vw 4vw 4vw 10vw 60vw 6vw;
-    grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
+    grid-template-rows:  6vw 6vw 8vw 12vw 60vw 6vw;
+    grid-template-columns: 20vw 30vw 1vw 30vw 20vw;
     grid-template-areas: 
-    "h   h    h    h    h"
-    "e1  inr  e3   inc  e2"
-    "e1  bt   bt   bt   e2"
-    "p1  win  win  win  p2"
-    "br  br   br   br   br"
-    "f   f    f    f    f";
+    "h   h      h    h      h"
+    "e1  inr    e3   inc    e2"
+    "e1  se1    e3   se2    e2"
+    "p1  bt     bt   bt     p2"
+    "br  br     br   br     br"
+    "f   f      f    f      f";
     background-color: lightgray;
-    /* grid-gap: 5px; */
-
+    justify-items: center;
 }
 
 h1{
     grid-area: h;
     align-self: center;
     justify-self: center;
-
 }
 
 #player1{
@@ -45,8 +43,8 @@ h1{
     grid-area: br;
     display: grid;
     margin: auto;
-    width: 80vw;
-    height: 60vw;
+    width: 40vw;
+    height: 40vw;
     background-color: antiquewhite; 
     border: 5px solid antiquewhite;
 
@@ -65,19 +63,28 @@ h1{
     align-items: center;
 }
 
-#rowInput{
+#rowInputDiv{
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
     grid-area: inr;
-    margin: auto;
-
-
+     margin: auto;
 }
 
-#colInput{
+#colInputDiv{
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
     grid-area: inc;
     margin: auto;
-
 }
 
+select{
+    height: 25px;
+}
+
+input{
+    height: 20px;
+    width: 80px;
+}
 
 #generateBoard{
     grid-area: bt;
@@ -86,3 +93,63 @@ h1{
     justify-self: center;
 
 }
+
+#player1-Options{
+    display: grid;
+    grid-template-rows:repeat(2, 1fr);
+    grid-area: se1;
+}
+
+#selectPlayer1{
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    /* grid-area: se1; */
+    /* margin: auto; */
+}
+
+#player2-Options{
+    display: grid;
+    grid-template-rows:repeat(2, 1fr);
+    grid-area: se2;
+}
+
+#selectPlayer2{
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    /* margin: auto; */
+}
+
+#comp1-OptionsDiv{
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-template-rows:repeat(2, 1fr);
+    /* margin: auto; */
+}
+
+#comp2-OptionsDiv{
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-template-rows:repeat(2, 1fr);
+    /* margin: auto; */
+}
+
+#generateBoard {
+    padding: 10px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  #generateBoard:hover {background-color: #3e8e41}
+  
+  #generateBoard:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }

@@ -12,9 +12,67 @@
     
     <div id = "container">
         <h1>The Gold Rush</h1>
-        <input id='rowInput' type="text">
-        <input id='colInput' type="text">
+
+        <div id ="rowInputDiv">
+            <label for="rowInput">Rows: </label>
+            <input id='rowInput' type="text">
+        </div>
+
+        <div id ="colInputDiv">
+            <label for="colInput">Columns: </label>
+            <input id='colInput' type="text">
+        </div>
+
+        <div id ="player1-Options">
+            <div id="selectPlayer1">
+                <label for="dropDownPlayer1">Player 1:</label>
+                <select id="dropDownPlayer1">
+                    <option value="computer">Computer</option>
+                    <option value="human">Human</option>
+                </select>
+            </div>
+            <div id="comp1-OptionsDiv">
+                <label for="speed">Speed: </label>
+                <select id="speed">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <label for="algorithm">Algorithm: </label>
+                <select id="algorithm">
+                    <option value="DFS">DFS</option>
+                </select>
+            </div>
+        </div>
+
+        <div id = "player2-Options">
+            <div id="selectPlayer2">
+                <label for="dropDownPlayer2">Player 2:</label>
+                <select id="dropDownPlayer2">
+                    <option value="computer">Computer</option>
+                    <option value="human">Human</option>
+                </select>
+            </div>
+            <div id="comp2-OptionsDiv">
+                <label for="speed">Speed: </label>
+                <select id="speed">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <label for="algorithm">Algorithm: </label>
+                <select id="algorithm">
+                    <option value="DFS">DFS</option>
+                </select>
+            </div>
+        </div>
+
         <button id='generateBoard'>Generate Board</button>
+        
         <div id = 'player1'>
             <h3>Player 1</h2>
             <h3>Score: 0</h3>

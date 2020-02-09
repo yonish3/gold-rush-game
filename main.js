@@ -10,6 +10,22 @@ let movementFlag = false
 let playerMoving 
 let clearTimeoutArry =[]
 let lastScore = 0
+let defaultPlayer1 = 'computer'
+let defaultPlayer2 = 'computer'
+
+$("#dropDownPlayer1").on("change", function() {
+    if (this.value != defaultPlayer1){
+        defaultPlayer1 = this.value
+        Render.addRemoveCompOptions(this.value, this.id)
+    }
+ })
+
+ $("#dropDownPlayer2").on("change", function() {
+    if (this.value != defaultPlayer2){
+        defaultPlayer2 = this.value
+        Render.addRemoveCompOptions(this.value, this.id)
+    }
+ })
 
 $('#generateBoard').on('click', function () {
     
