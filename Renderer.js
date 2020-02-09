@@ -32,7 +32,7 @@ class Renderer{
                         break;
                     case '.': 
                         $('#board').append(
-                            `<div class='path' style="font-size: 1em">
+                            `<div class='path' style="font-size: 0.5em">
                                 <i class="fas fa-circle" style="color: black;"></i>
                             </div>`)
                         break

@@ -31,10 +31,10 @@ const getClosestCoin = function (location, goldMap) {
     return closestCoin
 }
 
-const computer = function(GoldRushBoard, clearTimeoutArry){
+const computer = function(GoldRushBoard, clearTimeoutArry, player){
     let rowM = GoldRushBoard.row +1
     let colM = GoldRushBoard.col +1
-    let location = {row:GoldRushBoard.player1.row, col:GoldRushBoard.player1.col}
+    let location = {row:player.row, col:player.col}
     let closestCoin = {}
     let path = GoldRushBoard.compPath = []
     clearTimeoutArry = []
@@ -44,9 +44,9 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
     if(GoldRushBoard.goldMap.length==0) return
 
     closestCoin = getClosestCoin(location, GoldRushBoard.goldMap)
-    GoldRushBoard.compClosestCoin =  {row: closestCoin.row, col: closestCoin.col}
+    player.compClosestCoin =  {row: closestCoin.row, col: closestCoin.col}
 
-    GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy)
+    GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy, player.id)
     
 
     for (let i = 0; i < path.length-1; i++) {
@@ -57,7 +57,7 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
 
             let OverLappingPlayersFlag = false
 
-            if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col] === 2 ){
+            if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col] === (player.id == 1 ? 2 : 1) ){
                 OverLappingPlayersFlag = true
                 i = path.length
                 clearTimeoutArry.forEach(setTimeoutMove => {
@@ -67,20 +67,20 @@ const computer = function(GoldRushBoard, clearTimeoutArry){
 
             if(!OverLappingPlayersFlag){
                 if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col]=='c'){
-                    GoldRushBoard.player1.score ++
-                    Render.updateScore(GoldRushBoard.player1)
+                    player.score ++
+                    Render.updateScore(player)
                 }
 
                 GoldRushBoard.alter(path[k].row, path[k].col,'.')
-                GoldRushBoard.alter(path[k+1].row, path[k+1].col, 1)
+                GoldRushBoard.alter(path[k+1].row, path[k+1].col, player.id)
                 Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
 
-                GoldRushBoard.player1.row = path[k+1].row
-                GoldRushBoard.player1.col = path[k+1].col
+                player.row = path[k+1].row
+                player.col = path[k+1].col
             }
 
             if(k == path.length-2 || OverLappingPlayersFlag){
-                computer(GoldRushBoard, clearTimeoutArry)
+                computer(GoldRushBoard, clearTimeoutArry, player)
             }
 
         }, 1000*(k+1))

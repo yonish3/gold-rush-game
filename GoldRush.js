@@ -5,24 +5,30 @@ class GoldRush extends Matrix{
         this.row = row-1
         this.col = col-1
         this.matrixCopy = []
-        this.compPath = []
         this.goldMap = []
-        this.compClosestCoin = {}
-
    
         this.player1 = {
             id: 1,
             row: 0,
             col: 0,
             score: 0,
-            lastCoinLocation: null
+            lastCoinLocation: null,
+            compClosestCoin : {},
+            compPath : [],
+            isComp : null,
+            clearTimeoutArry : []
+
         }
         this.player2 = {
             id: 2,
             row: row-1,
             col: col-1,
             score: 0,
-            lastCoinLocation: null
+            lastCoinLocation: null,
+            compClosestCoin : {},
+            compPath : [],
+            isComp : null,
+            clearTimeoutArry : []
         }
     }
 
@@ -151,10 +157,10 @@ class GoldRush extends Matrix{
         console.log('\n')
     }
 
-    checkPath = (rowS, colS, rowM, colM, matrix)=>{
+    checkPath = (rowS, colS, rowM, colM, matrix, playerId)=>{
 
         if (rowS < 0 || colS < 0 || rowS > this.row || colS > this.col) return false
-        if(matrix[rowS][colS] == 'b' || matrix[rowS][colS] == '$' || matrix[rowS][colS]== '2') return false
+        if(matrix[rowS][colS] == 'b' || matrix[rowS][colS] == '$' || matrix[rowS][colS] == (playerId == 1 ? 2:1)) return false
 
         matrix[rowS][colS] = '$'
 
@@ -165,19 +171,19 @@ class GoldRush extends Matrix{
             return true  
         } 
 
-        if (this.checkPath(rowS-1, colS, rowM, colM, matrix)){
+        if (this.checkPath(rowS-1, colS, rowM, colM, matrix, playerId)){
             this.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         } 
-        if (this.checkPath(rowS, colS+1, rowM, colM, matrix)){
+        if (this.checkPath(rowS, colS+1, rowM, colM, matrix, playerId)){
             this.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         }       
-        if (this.checkPath(rowS+1, colS, rowM, colM, matrix)){
+        if (this.checkPath(rowS+1, colS, rowM, colM, matrix, playerId)){
             this.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         }      
-        if (this.checkPath(rowS, colS-1, rowM, colM, matrix)) {
+        if (this.checkPath(rowS, colS-1, rowM, colM, matrix, playerId)) {
             this.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         }
@@ -198,7 +204,7 @@ class GoldRush extends Matrix{
             this.matrixCopy[0][0] = '.'
             this.matrixCopy[this.row][this.col] = '.'
 
-            flag = GoldRushBoard.checkPath(0,0,this.row, this.col, this.matrixCopy)
+            flag = GoldRushBoard.checkPath(0,0,this.row, this.col, this.matrixCopy, 1)
         }
         
         return true

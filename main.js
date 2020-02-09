@@ -8,10 +8,11 @@ let rowInput
 let colInput
 let movementFlag = false
 let playerMoving 
-let clearTimeoutArry =[]
 let lastScore = 0
 let defaultPlayer1 = 'computer'
 let defaultPlayer2 = 'computer'
+let player1Type 
+let player2Type 
 
 $("#dropDownPlayer1").on("change", function() {
     if (this.value != defaultPlayer1){
@@ -28,7 +29,11 @@ $("#dropDownPlayer1").on("change", function() {
  })
 
 $('#generateBoard').on('click', function () {
-    
+
+    player1Type = $('#dropDownPlayer1').val()
+    player2Type = $('#dropDownPlayer2').val()
+
+    console.log(player1)
     rowInput = $('#rowInput').val()
     colInput = $('#colInput').val()
     $('matrixRow').val("")
@@ -48,8 +53,17 @@ $('#generateBoard').on('click', function () {
     Render.generateMatrix(rowInput, colInput, boardMatrix)
 
     if (GoldRushBoard) {
-        computer(GoldRushBoard, clearTimeoutArry)
+        if(player1Type === 'computer'){
+            player1.isComp = true
+            computer(GoldRushBoard, player1.clearTimeoutArry, player1)
+        }
+        if(player2Type === 'computer'){
+            player2.isComp = true
+            computer(GoldRushBoard, player2.clearTimeoutArry, player2)
+        }
     }
+    
+    
 })
 
 $(function(){
@@ -84,22 +98,41 @@ $(function(){
                     break;
             }
 
-            if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.compPath.length === 0){
-                computer(GoldRushBoard, clearTimeoutArry)
+            if(player1Type === 'computer'){
+                if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.player1.compPath.length === 0){
+                    computer(GoldRushBoard, player1.clearTimeoutArry, player1)
+                }
             }
 
-            let lastCoinLocation = JSON.stringify(GoldRushBoard.player2.lastCoinLocation)
-            let compClosestCoin = JSON.stringify(GoldRushBoard.compClosestCoin)
-            let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
-
-            if (didPlayerTookCompCoin){
-                    clearTimeoutArry.forEach(setTimeoutMove => {
-                        clearTimeout(setTimeoutMove)
-                    })
-                    clearTimeoutArry = []
-                    closestCoin = computer(GoldRushBoard, clearTimeoutArry)
+            if(player2Type === 'computer'){
+                if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.player2.compPath.length === 0){
+                    computer(GoldRushBoard, player2.clearTimeoutArry, player2)
+                }
             }
 
+            if(player1.isComp || player2.isComp){
+                let player = player1
+                let playerCompClosestCoin = player2.compClosestCoin
+                for (let i = 1; i < 3; i++) {
+                    if (player.isComp) {
+
+                        let lastCoinLocation = JSON.stringify(player.lastCoinLocation)
+                        let compClosestCoin = JSON.stringify(playerCompClosestCoin)
+                        let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
+
+                        if (didPlayerTookCompCoin){
+                                player.clearTimeoutArry.forEach(setTimeoutMove => {
+                                    clearTimeout(setTimeoutMove)
+                                })
+                                player.clearTimeoutArry = []
+                                closestCoin = computer(GoldRushBoard, player.clearTimeoutArry, player)
+                        }
+                    }
+                    player = player2
+                    playerCompClosestCoin = player1.compClosestCoin
+
+                }
+            }
         }
                    
     })
