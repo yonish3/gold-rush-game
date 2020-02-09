@@ -32,6 +32,7 @@ const getClosestCoin = function (location, goldMap) {
 }
 
 const computer = function(GoldRushBoard, clearTimeoutArry, player){
+    let compSpeed = (-1*player.compSpeed + 6)/4
     let rowM = GoldRushBoard.row +1
     let colM = GoldRushBoard.col +1
     let location = {row:player.row, col:player.col}
@@ -83,8 +84,7 @@ const computer = function(GoldRushBoard, clearTimeoutArry, player){
             if(k == path.length-2 || OverLappingPlayersFlag){
                 computer(GoldRushBoard, clearTimeoutArry, player)
             }
-
-        }, 1000*(k+1))
+        }, compSpeed*1000*(k+1))
 
         clearTimeoutArry.push(setTimeoutMove)
 

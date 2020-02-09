@@ -16,7 +16,8 @@ class GoldRush extends Matrix{
             compClosestCoin : {},
             compPath : [],
             isComp : null,
-            clearTimeoutArry : []
+            clearTimeoutArry : [],
+            compSpeed: 0
 
         }
         this.player2 = {
@@ -28,7 +29,8 @@ class GoldRush extends Matrix{
             compClosestCoin : {},
             compPath : [],
             isComp : null,
-            clearTimeoutArry : []
+            clearTimeoutArry : [],
+            compSpeed: 0
         }
     }
 

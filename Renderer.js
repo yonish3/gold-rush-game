@@ -88,5 +88,12 @@ class Renderer{
         $('#comp2-OptionsDiv').append('<img id="theImg" src="pics/player2-keys.png" />')
 
     }
+
+    countDown(k){
+        $('#countDown').remove()
+        if(k<3){
+            $('#board').append(`<h1 id='countDown'>${(-k)+3}</h1>`)
+        }
+    }
 }
     

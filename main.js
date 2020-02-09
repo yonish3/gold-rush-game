@@ -45,10 +45,12 @@ $('#generateBoard').on('click', function () {
 
     GoldRushBoard = new GoldRush (rowInput, colInput)
     GoldRushBoard.generateBoard()
-    movementFlag = true
-
+    
     player1 = GoldRushBoard.player1
     player2 = GoldRushBoard.player2
+
+    player1.compSpeed = $('#speed1').val()
+    player2.compSpeed = $('#speed2').val()
 
     GoldRushBoard.alter(0,0,1)
     GoldRushBoard.alter(rowInput-1,colInput-1,2)
@@ -56,16 +58,26 @@ $('#generateBoard').on('click', function () {
 
     Render.generateMatrix(rowInput, colInput, boardMatrix)
 
-    if (GoldRushBoard) {
-        if(player1Type === 'computer'){
-            player1.isComp = true
-            computer(GoldRushBoard, player1.clearTimeoutArry, player1)
-        }
-        if(player2Type === 'computer'){
-            player2.isComp = true
-            computer(GoldRushBoard, player2.clearTimeoutArry, player2)
-        }
+    for (let i = 0; i < 4; i++) {
+        let k = i
+        setTimeout(function(){
+             
+                Render.countDown(k)
+                if (k == 3){
+                    if(player1Type === 'computer'){
+                        player1.isComp = true
+                        computer(GoldRushBoard, player1.clearTimeoutArry, player1)
+                    }
+                    if(player2Type === 'computer'){
+                        player2.isComp = true
+                        computer(GoldRushBoard, player2.clearTimeoutArry, player2)
+                    }
+                movementFlag = true
+            }
+        }, 1000*(k+1))
     }
+
+    
    
     
 })
