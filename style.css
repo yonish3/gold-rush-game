@@ -7,8 +7,8 @@
     "h   h      h    h      h"
     "e1  inr    e3   inc    e2"
     "e1  se1    e3   se2    e2"
-    "p1  bt     bt   bt     p2"
-    "br  br     br   br     br"
+    "e1  bt     bt   bt     e2"
+    "p1  br     br   br     p2"
     "f   f      f    f      f";
     background-color: lightgray;
     justify-items: center;
@@ -29,7 +29,6 @@ h1{
 #player2{
     grid-area: p2;
     align-self: center;
-    align-self: center;
     justify-self: start;
 
 }
@@ -42,10 +41,10 @@ h1{
 #board{ 
     grid-area: br;
     display: grid;
-    margin: auto;
+    /* margin: auto; */
     width: 40vw;
     height: 40vw;
-    background-color: antiquewhite; 
+    /* background-color: antiquewhite;  */
     border: 5px solid antiquewhite;
 
 }
