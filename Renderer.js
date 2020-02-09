@@ -61,6 +61,7 @@ class Renderer{
         }
 
         if(selection === 'computer'){
+            $(`#${appendDiv}`).empty()
             $(`#${appendDiv}`).append(`
                 <label for="speed">Speed: </label>
                 <select id="speed">
@@ -79,9 +80,13 @@ class Renderer{
         }
         if(playerId === 'dropDownPlayer1'){
             $('#comp1-OptionsDiv').empty()
+            $('#comp1-OptionsDiv').append('<img id="theImg" src="pics/player1-keys.png" />')
+
             return
         }
         $('#comp2-OptionsDiv').empty()
+        $('#comp2-OptionsDiv').append('<img id="theImg" src="pics/player2-keys.png" />')
+
     }
 }
     

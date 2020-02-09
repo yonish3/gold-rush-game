@@ -1,7 +1,7 @@
 #container{
     
     display: grid;
-    grid-template-rows:  6vw 6vw 8vw 12vw 60vw 6vw;
+    grid-template-rows:  5vw 5vw 8vw 12vw 60vw 6vw;
     grid-template-columns: 20vw 30vw 1vw 30vw 20vw;
     grid-template-areas: 
     "h   h      h    h      h"
@@ -132,6 +132,13 @@ input{
     /* margin: auto; */
 }
 
+
+img{
+    margin: 5px;
+    grid-column: 1 /span 2;
+    grid-row: 1 /span 2;
+}
+
 #generateBoard {
     padding: 10px 25px;
     font-size: 24px;
@@ -151,4 +158,8 @@ input{
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+  }
+
+  html {
+    scroll-behavior: smooth;
   }

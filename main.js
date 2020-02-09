@@ -33,11 +33,15 @@ $('#generateBoard').on('click', function () {
     player1Type = $('#dropDownPlayer1').val()
     player2Type = $('#dropDownPlayer2').val()
 
-    console.log(player1)
     rowInput = $('#rowInput').val()
     colInput = $('#colInput').val()
     $('matrixRow').val("")
     $('matrixCol').val("")
+
+    if (rowInput == "" || colInput == "") {
+        alert('Row and Col must have number value bigger then 0')
+        return
+    }
 
     GoldRushBoard = new GoldRush (rowInput, colInput)
     GoldRushBoard.generateBoard()
@@ -62,7 +66,7 @@ $('#generateBoard').on('click', function () {
             computer(GoldRushBoard, player2.clearTimeoutArry, player2)
         }
     }
-    
+   
     
 })
 

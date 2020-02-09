@@ -48,6 +48,7 @@ const computer = function(GoldRushBoard, clearTimeoutArry, player){
 
     GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy, player.id)
     
+// maybe add if path.lenth = 0 call the funciton again in 1 sec??
 
     for (let i = 0; i < path.length-1; i++) {
 
