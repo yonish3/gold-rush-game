@@ -44,7 +44,7 @@ $('#generateBoard').on('click', function () {
     }
 
     GoldRushBoard = new GoldRush (rowInput, colInput)
-    GoldRushBoard.generateBoard()
+    GoldRushBoard.checkPathForAllCoins()
     
     player1 = GoldRushBoard.player1
     player2 = GoldRushBoard.player2

@@ -167,8 +167,6 @@ class GoldRush extends Matrix{
 
         matrix[rowS][colS] = '$'
 
-        //this.printAnyMatrix(matrix)
-
         if (rowS == rowM && colS== colM){
             this.compPath.unshift({'row': rowS, 'col': colS})
             return true  
@@ -190,27 +188,62 @@ class GoldRush extends Matrix{
             this.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         }
-
-        //this.printAnyMatrix(matrix)
-        //console.log('false')
-        
         return false
         
     }
 
-    generateBoard (){
+    checkPathForAllCoins = () => {
+
+        let coinMap = []
         let flag = false
 
         while (!flag) {
+            coinMap = [{row: this.row, col: this.col}]
             this.compPath = []
             this.randomGameGenerator()
+
+            for (let r = 0; r < this.matrix.length; r++) {
+                for (let c = 0; c < this.matrix[r].length; c++) {
+                    if (this.matrix[r][c] == 'c') {
+                        coinMap.push({
+                            row: r,
+                            col: c
+                        })
+                    }
+                }
+            }
+
             this.matrixCopy[0][0] = '.'
             this.matrixCopy[this.row][this.col] = '.'
 
-            flag = GoldRushBoard.checkPath(0,0,this.row, this.col, this.matrixCopy, 1)
+            flag = true
+            for (let i = 0; i < coinMap.length; i++) {
+                this.printAnyMatrix(this.matrixCopy)
+                flag = this.checkPath(0,0,coinMap[i].row, coinMap[i].col, this.matrixCopy, 1)
+                
+                if (!flag){
+                    this.printAnyMatrix(this.matrixCopy)
+                    console.log('coinMap[i].row', coinMap[i].row)
+                    console.log('coinMap[i].col',  coinMap[i].col)
+                    break
+                } 
+                this.matrixCopy = this.copyMatrix()
+            }
+
+            this.print()
         }
-        
         return true
+    }
+
+    copyMatrix(){
+        let matrixCopy = [] 
+        for (let r = 0; r < this.matrix.length; r++) {
+            matrixCopy.push([])
+            for (let c = 0; c < this.matrix[r].length; c++) {
+                matrixCopy[r].push(this.matrix[r][c])
+            }
+        }
+        return matrixCopy
     }
 
     didComputerTookMyCoin = (comp) => {
