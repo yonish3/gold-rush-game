@@ -63,13 +63,10 @@ const computer = function(GoldRushBoard, clearTimeoutArry, player){
 
             let OverLappingPlayersFlag = false
 
-            if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col] === (player.id == 1 ? 2 : 1) ){
+            OverLappingPlayersFlag = GoldRushBoard.didComputerTookMyCoin(player)
+
+            if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col] === (player.id == 1 ? 2 : 1) || OverLappingPlayersFlag){
                 OverLappingPlayersFlag = true
-                
-                console.log('* OverLappingPlayersFlag is true')
-                console.log('1. GoldRushBoard.matrix[path[k+1].row][path[k+1].col]', GoldRushBoard.matrix[path[k+1].row][path[k+1].col])
-                console.log('2. player.id ', player.id )
-                console.log('3. k ', k )
 
                 i = path.length
                 clearTimeoutArry.forEach(setTimeoutMove => {
@@ -87,17 +84,11 @@ const computer = function(GoldRushBoard, clearTimeoutArry, player){
                 GoldRushBoard.alter(path[k+1].row, path[k+1].col, player.id)
                 Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
 
-                // console.log('* ! OverLappingPlayersFlag', OverLappingPlayersFlag)
-                // console.log('3. k ', k )
-
                 player.row = path[k+1].row
                 player.col = path[k+1].col
             }
 
             if(k == path.length-2 || OverLappingPlayersFlag){
-                console.log('* OverLappingPlayersFlag is true or path is ended, calling comp again', OverLappingPlayersFlag)
-                console.log('* k == path.length-2', k, path.length-2)
-
                 computer(GoldRushBoard, clearTimeoutArry, player)
             }
         }, compSpeed*1000*(k+1))

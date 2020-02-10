@@ -117,49 +117,23 @@ $(function(){
             if(player1Type === 'computer'){
                 if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.player1.compPath.length === 0){
                     computer(GoldRushBoard, player1.clearTimeoutArry, player1)
-
-                    console.log('*player 1 is out of path')
-                    console.log('1. GoldRushBoard.goldMap.length !=', GoldRushBoard.goldMap.length)
-                    console.log('2. GoldRushBoard.player1.compPath.length == 0', GoldRushBoard.player1.compPath.length)
                 }
             }
 
             if(player2Type === 'computer'){
                 if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.player2.compPath.length === 0){
                     computer(GoldRushBoard, player2.clearTimeoutArry, player2)
-                    console.log('*player 2 is out of path')
-                    console.log('1. GoldRushBoard.goldMap.length !=', GoldRushBoard.goldMap.length)
-                    console.log('2. GoldRushBoard.player1.compPath.length == 0', GoldRushBoard.player2.compPath.length)
                 }
             }
 
-            if(player1.isComp || player2.isComp){
-                let player = player1
-                let OtherPlayerCompClosestCoin = player2.compClosestCoin
-                for (let i = 1; i < 3; i++) {
-                    if (player.isComp) {
-
-                        let lastCoinLocation = JSON.stringify(player.lastCoinLocation)
-                        let compClosestCoin = JSON.stringify(OtherPlayerCompClosestCoin)
-                        let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
-
-                        if (didPlayerTookCompCoin){
-                            console.log(`*player ${i} needs to change coin destination`)
-                            console.log(`1. player ${i} player.lastCoinLocation`, player.lastCoinLocation)
-                            console.log(`2. other player player2.compClosestCoin`, OtherPlayerCompClosestCoin)
-
-                                player.clearTimeoutArry.forEach(setTimeoutMove => {
-                                    clearTimeout(setTimeoutMove)
-                                })
-                                player.clearTimeoutArry = []
-                                computer(GoldRushBoard, player.clearTimeoutArry, player)
-                        }
-                    }
-                    player = player2
-                    OtherPlayerCompClosestCoin = player1.compClosestCoin
-
-                }
+            if(player1.isComp){
+                GoldRushBoard.didPlayerTookMyCoin(player2, player1)
             }
+
+            if(player2.isComp){
+                GoldRushBoard.didPlayerTookMyCoin(player1, player2)
+            }
+            
         }
                    
     })

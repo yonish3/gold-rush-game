@@ -107,6 +107,7 @@ class GoldRush extends Matrix{
                     row: row,
                     col:col
                 }
+                console.log('player.lastCoinLocation ', player.lastCoinLocation )
             }
             
             this.alter(row,col,player.id)
@@ -210,6 +211,37 @@ class GoldRush extends Matrix{
         }
         
         return true
+    }
+
+    didComputerTookMyCoin = (comp) => {
+        let otherComp = comp.id == 1 ? this.player2 : this.player1
+
+        let compClosestCoin = JSON.stringify(comp.CompClosestCoin)
+        let lastCoinLocation = JSON.stringify(otherComp.lastCoinLocation)
+        let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
+
+        if (didPlayerTookCompCoin){
+            comp.clearTimeoutArry.forEach(setTimeoutMove => {
+                clearTimeout(setTimeoutMove)
+            })
+            comp.clearTimeoutArry = []
+            return true
+        }
+        return false
+    }
+
+    didPlayerTookMyCoin = (player, comp) => {
+        let lastCoinLocation = JSON.stringify(player.lastCoinLocation)
+        let compClosestCoin = JSON.stringify(comp.compClosestCoin)
+        let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
+
+        if (didPlayerTookCompCoin){
+            comp.clearTimeoutArry.forEach(setTimeoutMove => {
+                clearTimeout(setTimeoutMove)
+            })
+            comp.clearTimeoutArry = []
+            computer(GoldRushBoard, comp.clearTimeoutArry, comp)
+        }
     }
     
     
