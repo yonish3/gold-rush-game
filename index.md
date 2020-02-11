@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/279da6745c.js" crossorigin="anonymous"></script>
-    <title>Document</title>
-</head>
-<body>
+
     <div id = "container">
         <h1>The Gold Rush</h1>
 
@@ -93,13 +83,3 @@
         </div>
         <div id = 'board'></div>
     </div>
-
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="Computer.js"></script>
-<script src="Matrix.js"></script>
-<script src="GoldRush.js"></script>
-<script src="Renderer.js"></script>
-<script src="main.js"></script>
-
-</html>
