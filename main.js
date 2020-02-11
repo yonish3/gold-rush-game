@@ -86,70 +86,65 @@ $('#generateBoard').on('click', function () {
             }
         }, 1000*(k+1))
     }
-
-    
-   
-    
 })
 
-//$(function(){
-    $(document).on('keypress', function(e){
+$(document).on('keypress', function(e){
+
+    if(movementFlag){
+    if (e.which == 119 || e.which == 97 || e.which == 115 || e.which == 100) {
+        playerMoving = player1
+        if(player1.isComp) e.which = false
+    } else {
+        playerMoving = player2
+        if(player2.isComp) e.which = false
+    }
+
+        switch (e.which) {
+            case 119 : case 105:
+                GoldRushBoard.movePlayer(playerMoving,'up')
+                Render.generateMatrix(rowInput, colInput, GoldRushBoard)
+                Render.updateScore(playerMoving)
+                break;
+            case 97 : case 106:
+                GoldRushBoard.movePlayer(playerMoving,'down')
+                Render.generateMatrix(rowInput, colInput, GoldRushBoard)
+                Render.updateScore(playerMoving)
+                break;
+            case 115: case 107:
+                GoldRushBoard.movePlayer(playerMoving,'left')
+                Render.generateMatrix(rowInput, colInput, GoldRushBoard)
+                Render.updateScore(playerMoving)
+                break;
+            case 100 : case 108:
+                GoldRushBoard.movePlayer(playerMoving,'right')
+                Render.generateMatrix(rowInput, colInput, GoldRushBoard)
+                Render.updateScore(playerMoving)
+                break;
+        }
+
+        if(player1Type === 'computer'){
+            if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.player1.compPath.length === 0){
+                computer(GoldRushBoard, player1.clearTimeoutArry, player1)
+            }
+        }
+
+        if(player2Type === 'computer'){
+            if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.player2.compPath.length === 0){
+                computer(GoldRushBoard, player2.clearTimeoutArry, player2)
+            }
+        }
+
+        if(player1.isComp){
+            GoldRushBoard.didPlayerTookMyCoin(player2, player1)
+        }
+
+        if(player2.isComp){
+            GoldRushBoard.didPlayerTookMyCoin(player1, player2)
+        }
         
-        if(movementFlag){
-        if (e.which == 119 || e.which == 97 || e.which == 115 || e.which == 100) {
-            playerMoving = player1
-            if(player1.isComp) e.which = false
-        } else {
-            playerMoving = player2
-            if(player2.isComp) e.which = false
-        }
+    }
+                
+})
 
-            switch (e.which) {
-                case 119 : case 105:
-                    GoldRushBoard.movePlayer(playerMoving,'up')
-                    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
-                    Render.updateScore(playerMoving)
-                    break;
-                case 97 : case 106:
-                    GoldRushBoard.movePlayer(playerMoving,'down')
-                    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
-                    Render.updateScore(playerMoving)
-                    break;
-                case 115: case 107:
-                    GoldRushBoard.movePlayer(playerMoving,'left')
-                    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
-                    Render.updateScore(playerMoving)
-                    break;
-                case 100 : case 108:
-                    GoldRushBoard.movePlayer(playerMoving,'right')
-                    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
-                    Render.updateScore(playerMoving)
-                    break;
-            }
 
-            if(player1Type === 'computer'){
-                if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.player1.compPath.length === 0){
-                    computer(GoldRushBoard, player1.clearTimeoutArry, player1)
-                }
-            }
-
-            if(player2Type === 'computer'){
-                if(GoldRushBoard.goldMap.length != 0 && GoldRushBoard.player2.compPath.length === 0){
-                    computer(GoldRushBoard, player2.clearTimeoutArry, player2)
-                }
-            }
-
-            if(player1.isComp){
-                GoldRushBoard.didPlayerTookMyCoin(player2, player1)
-            }
-
-            if(player2.isComp){
-                GoldRushBoard.didPlayerTookMyCoin(player1, player2)
-            }
-            
-        }
-                   
-    })
-
-//})
 
