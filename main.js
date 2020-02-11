@@ -29,6 +29,7 @@ $("#dropDownPlayer1").on("change", function() {
  })
 
 $('#generateBoard').on('click', function () {
+    movementFlag = false
 
     if(GoldRushBoard){
         GoldRushBoard.player1.clearTimeoutArry.forEach(setTimeoutMove => {
@@ -95,8 +96,10 @@ $(function(){
     $(document).on('keypress', function(e){
         if (e.which == 119 || e.which == 97 || e.which == 115 || e.which == 100) {
             playerMoving = player1
+            if(player1.isComp) e.which = false
         } else {
             playerMoving = player2
+            if(player2.isComp) e.which = false
         }
 
         if(movementFlag){

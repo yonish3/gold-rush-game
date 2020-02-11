@@ -79,18 +79,20 @@ class Renderer{
 
     addRemoveCompOptions(selection, playerId){
         let appendDiv
-
+        let speedDiv
         if(playerId === 'dropDownPlayer1'){
             appendDiv = 'comp1-OptionsDiv'
+            speedDiv = '1'
         }else{
             appendDiv = 'comp2-OptionsDiv'
+            speedDiv = '2'
         }
 
         if(selection === 'computer'){
             $(`#${appendDiv}`).empty()
             $(`#${appendDiv}`).append(`
-                <label for="speed">Speed: </label>
-                <select id="speed">
+                <label for="speed${speedDiv}">Speed: </label>
+                <select id="speed${speedDiv}">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
