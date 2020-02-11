@@ -161,31 +161,32 @@ class GoldRush extends Matrix{
     }
 
     checkPath = (rowS, colS, rowM, colM, matrix, playerId)=>{
-
         if (rowS < 0 || colS < 0 || rowS > this.row || colS > this.col) return false
         if(matrix[rowS][colS] == 'b' || matrix[rowS][colS] == '$' || matrix[rowS][colS] == (playerId == 1 ? 2:1)) return false
 
         matrix[rowS][colS] = '$'
 
+        let player = (playerId == 1 ? this.player1 : this.player2)
+
         if (rowS == rowM && colS== colM){
-            this.compPath.unshift({'row': rowS, 'col': colS})
+            player.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         } 
 
         if (this.checkPath(rowS-1, colS, rowM, colM, matrix, playerId)){
-            this.compPath.unshift({'row': rowS, 'col': colS})
+            player.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         } 
         if (this.checkPath(rowS, colS+1, rowM, colM, matrix, playerId)){
-            this.compPath.unshift({'row': rowS, 'col': colS})
+            player.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         }       
         if (this.checkPath(rowS+1, colS, rowM, colM, matrix, playerId)){
-            this.compPath.unshift({'row': rowS, 'col': colS})
+            player.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         }      
         if (this.checkPath(rowS, colS-1, rowM, colM, matrix, playerId)) {
-            this.compPath.unshift({'row': rowS, 'col': colS})
+            player.compPath.unshift({'row': rowS, 'col': colS})
             return true  
         }
         return false

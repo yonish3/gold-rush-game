@@ -37,7 +37,7 @@ const computer = function(GoldRushBoard, clearTimeoutArry, player){
     let colM = GoldRushBoard.col +1
     let location = {row:player.row, col:player.col}
     let closestCoin = {}
-    let path = GoldRushBoard.compPath = []
+    let path = player.compPath = []
 
     clearTimeoutArry.forEach(setTimeoutMove => {
         clearTimeout(setTimeoutMove)
