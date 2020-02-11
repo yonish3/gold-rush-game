@@ -22,29 +22,45 @@ h1{
 
 #player1{
     grid-area: p1;
-    align-self: center;
+    /* align-self: center; */
     justify-self: end;
 }
 
 #player2{
     grid-area: p2;
-    align-self: center;
+    /* align-self: center; */
     justify-self: start;
 
 }
 
+#winDiv{
+    position: absolute;
+    top: 70%;
+    left: 40%;
+    /* opacity: 85%;
+    color: darkorange; */
+}
+
 #win{
-    grid-area: win;
-    justify-self: center;
+    opacity: 90%;
+    color: darkorange;
+    font-size: 3em;
+}
+
+#countDown{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    opacity: 85%;
+    color: darkorange;
+    font-size: 8em;
 }
 
 #board{ 
     grid-area: br;
     display: grid;
-    /* margin: auto; */
     width: 40vw;
     height: 40vw;
-    /* background-color: antiquewhite;  */
     border: 5px solid antiquewhite;
 
 }
@@ -90,7 +106,6 @@ input{
     margin: auto;
     align-self: center;
     justify-self: center;
-
 }
 
 #player1-Options{
@@ -102,8 +117,6 @@ input{
 #selectPlayer1{
     display: grid;
     grid-template-columns:repeat(2, 1fr);
-    /* grid-area: se1; */
-    /* margin: auto; */
 }
 
 #player2-Options{
@@ -115,21 +128,18 @@ input{
 #selectPlayer2{
     display: grid;
     grid-template-columns:repeat(2, 1fr);
-    /* margin: auto; */
 }
 
 #comp1-OptionsDiv{
     display: grid;
     grid-template-columns:repeat(2, 1fr);
     grid-template-rows:repeat(2, 1fr);
-    /* margin: auto; */
 }
 
 #comp2-OptionsDiv{
     display: grid;
     grid-template-columns:repeat(2, 1fr);
     grid-template-rows:repeat(2, 1fr);
-    /* margin: auto; */
 }
 
 
@@ -164,13 +174,4 @@ img{
 
 html {
     scroll-behavior: smooth;
-}
-
-#countDown{
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    opacity: 85%;
-    color: darkorange;
-    font-size: 8em;
 }

@@ -53,16 +53,12 @@ const computer = function(GoldRushBoard, clearTimeoutArry, player){
 
     GoldRushBoard.checkPath(location.row, location.col, closestCoin.row, closestCoin.col, matrixCopy, player.id)
     
-// maybe add if path.lenth = 0 call the funciton again in 1 sec??
-
     for (let i = 0; i < path.length-1; i++) {
 
         let k = i
-
         let setTimeoutMove = setTimeout(function(){
 
             let OverLappingPlayersFlag = false
-
             OverLappingPlayersFlag = GoldRushBoard.didComputerTookMyCoin(player)
 
             if(GoldRushBoard.matrix[path[k+1].row][path[k+1].col] === (player.id == 1 ? 2 : 1) || OverLappingPlayersFlag){
@@ -82,7 +78,7 @@ const computer = function(GoldRushBoard, clearTimeoutArry, player){
 
                 GoldRushBoard.alter(path[k].row, path[k].col,'.')
                 GoldRushBoard.alter(path[k+1].row, path[k+1].col, player.id)
-                Render.generateMatrix(rowM, colM, GoldRushBoard.matrix)
+                Render.generateMatrix(rowM, colM, GoldRushBoard)
 
                 player.row = path[k+1].row
                 player.col = path[k+1].col

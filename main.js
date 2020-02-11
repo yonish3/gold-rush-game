@@ -30,6 +30,15 @@ $("#dropDownPlayer1").on("change", function() {
 
 $('#generateBoard').on('click', function () {
 
+    if(GoldRushBoard){
+        GoldRushBoard.player1.clearTimeoutArry.forEach(setTimeoutMove => {
+            clearTimeout(setTimeoutMove)
+        })
+        GoldRushBoard.player2.clearTimeoutArry.forEach(setTimeoutMove => {
+            clearTimeout(setTimeoutMove)
+        })
+    }
+
     player1Type = $('#dropDownPlayer1').val()
     player2Type = $('#dropDownPlayer2').val()
 
@@ -56,7 +65,7 @@ $('#generateBoard').on('click', function () {
     GoldRushBoard.alter(rowInput-1,colInput-1,2)
     boardMatrix = GoldRushBoard.matrix
 
-    Render.generateMatrix(rowInput, colInput, boardMatrix)
+    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
 
     for (let i = 0; i < 4; i++) {
         let k = i
@@ -94,22 +103,22 @@ $(function(){
             switch (e.which) {
                 case 119 : case 105:
                     GoldRushBoard.movePlayer(playerMoving,'up')
-                    Render.generateMatrix(rowInput, colInput, boardMatrix)
+                    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                     Render.updateScore(playerMoving)
                     break;
                 case 97 : case 106:
                     GoldRushBoard.movePlayer(playerMoving,'down')
-                    Render.generateMatrix(rowInput, colInput, boardMatrix)
+                    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                     Render.updateScore(playerMoving)
                     break;
                 case 115: case 107:
                     GoldRushBoard.movePlayer(playerMoving,'left')
-                    Render.generateMatrix(rowInput, colInput, boardMatrix)
+                    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                     Render.updateScore(playerMoving)
                     break;
                 case 100 : case 108:
                     GoldRushBoard.movePlayer(playerMoving,'right')
-                    Render.generateMatrix(rowInput, colInput, boardMatrix)
+                    Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                     Render.updateScore(playerMoving)
                     break;
             }
