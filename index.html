@@ -9,17 +9,85 @@
     <title>Document</title>
 </head>
 <body>
-    
     <div id = "container">
         <h1>The Gold Rush</h1>
-        <input id='rowInput' type="text">
-        <input id='colInput' type="text">
-        <button id='generateBoard'>Generate Board</button>
+
+        <div id ="rowInputDiv">
+            <label for="rowInput">Rows: </label>
+            <input id='rowInput' type="text">
+        </div>
+
+        <div id ="colInputDiv">
+            <label for="colInput">Columns: </label>
+            <input id='colInput' type="text">
+        </div>
+
+        <div id ="player1-Options">
+            <div id="selectPlayer1">
+                <label for="dropDownPlayer1">Player 1:</label>
+                <select id="dropDownPlayer1">
+                    <option value="computer">Computer</option>
+                    <option value="human">Human</option>
+                </select>
+            </div>
+            <div id="comp1-OptionsDiv">
+                <label for="speed1">Speed: </label>
+                <select id="speed1">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    
+                </select>
+                <label for="algorithm">Algorithm: </label>
+                <select id="algorithm">
+                    <option value="DFS">DFS</option>
+                </select>
+            </div>
+        </div>
+
+        <div id = "player2-Options">
+            <div id="selectPlayer2">
+                <label for="dropDownPlayer2">Player 2:</label>
+                <select id="dropDownPlayer2">
+                    <option value="computer">Computer</option>
+                    <option value="human">Human</option>
+                </select>
+            </div>
+            <div id="comp2-OptionsDiv">
+                <label for="speed2">Speed: </label>
+                <select id="speed2">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <label for="algorithm">Algorithm: </label>
+                <select id="algorithm">
+                    <option value="DFS">DFS</option>
+                </select>
+            </div>
+        </div>
+
+        <button id='generateBoard' onclick="window.location.href='#board'">Generate Board</button>
+        
         <div id = 'player1'>
             <h3>Player 1</h2>
             <h3>Score: 0</h3>
         </div>
-        <h2 id = 'win'></h2>
+        <!-- <h2 id = 'win'></h2> -->
         <div id = 'player2'>
             <h3>Player 2</h3>
             <h3>Score: 0</h3>
@@ -29,6 +97,7 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="Computer.js"></script>
 <script src="Matrix.js"></script>
 <script src="GoldRush.js"></script>
 <script src="Renderer.js"></script>

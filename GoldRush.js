@@ -5,18 +5,32 @@ class GoldRush extends Matrix{
         this.row = row-1
         this.col = col-1
         this.matrixCopy = []
+        this.goldMap = []
    
         this.player1 = {
             id: 1,
             row: 0,
             col: 0,
-            score: 0
+            score: 0,
+            lastCoinLocation: null,
+            compClosestCoin : {},
+            compPath : [],
+            isComp : null,
+            clearTimeoutArry : [],
+            compSpeed: 0
+
         }
         this.player2 = {
             id: 2,
             row: row-1,
             col: col-1,
-            score: 0
+            score: 0,
+            lastCoinLocation: null,
+            compClosestCoin : {},
+            compPath : [],
+            isComp : null,
+            clearTimeoutArry : [],
+            compSpeed: 0
         }
     }
 
@@ -89,11 +103,14 @@ class GoldRush extends Matrix{
             player.col = col
             if (this.matrix[row][col] == 'c') {
                 player.score++
-                console.log(player.score)
+                player.lastCoinLocation = {
+                    row: row,
+                    col:col
+                }
+                console.log('player.lastCoinLocation ', player.lastCoinLocation )
             }
             
             this.alter(row,col,player.id)
-            this.print()
             return true 
         }
         else{
@@ -102,6 +119,8 @@ class GoldRush extends Matrix{
     }
 
     randomGameGenerator(){
+        this.matrix =this.generateMatrix(this.row+1, this.col+1)
+        this.matrixCopy =[]
         let random 
 
         for (let r = 0; r <= this.row; r++) {
@@ -129,27 +148,135 @@ class GoldRush extends Matrix{
         return this.matrixCopy
     }
 
-    checkPath(rowS, colS, rowM, colM, matrix){
-
-        if (rowS < 0 || colS < 0 || rowS > rowM || colS > colM) return false
     
-        if(matrix[rowS][colS] == 'b' || matrix[rowS][colS] == '$') return false
+    printCopy() {
+        for (let i = 0; i < this.matrixCopy.length; i++) {
+            let line = ""
+            for (let j = 0; j < this.matrixCopy[i].length; j++) {
+                line += (this.matrixCopy[i][j] + "\t")
+            }
+            console.log(line)
+        }
+        console.log('\n')
+    }
+
+    checkPath = (rowS, colS, rowM, colM, matrix, playerId)=>{
+        if (rowS < 0 || colS < 0 || rowS > this.row || colS > this.col) return false
+        if(matrix[rowS][colS] == 'b' || matrix[rowS][colS] == '$' || matrix[rowS][colS] == (playerId == 1 ? 2:1)) return false
 
         matrix[rowS][colS] = '$'
-        this.print()
 
-        if (rowS == rowM && colS== colM) return true 
-        
-        if (this.checkPath(rowS-1, colS, rowM, colM, matrix)) return true
-        if (this.checkPath(rowS, colS+1, rowM, colM, matrix)) return true       
-        if (this.checkPath(rowS+1, colS, rowM, colM, matrix)) return true     
-        if (this.checkPath(rowS, colS-1, rowM, colM, matrix)) return true
+        let player = (playerId == 1 ? this.player1 : this.player2)
 
-        this.print()
-        console.log('false')
-        
+        if (rowS == rowM && colS== colM){
+            player.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        } 
+
+        if (this.checkPath(rowS-1, colS, rowM, colM, matrix, playerId)){
+            player.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        } 
+        if (this.checkPath(rowS, colS+1, rowM, colM, matrix, playerId)){
+            player.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        }       
+        if (this.checkPath(rowS+1, colS, rowM, colM, matrix, playerId)){
+            player.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        }      
+        if (this.checkPath(rowS, colS-1, rowM, colM, matrix, playerId)) {
+            player.compPath.unshift({'row': rowS, 'col': colS})
+            return true  
+        }
         return false
         
     }
+
+    checkPathForAllCoins = () => {
+
+        let coinMap = []
+        let flag = false
+
+        while (!flag) {
+            coinMap = [{row: this.row, col: this.col}]
+            this.compPath = []
+            this.randomGameGenerator()
+
+            for (let r = 0; r < this.matrix.length; r++) {
+                for (let c = 0; c < this.matrix[r].length; c++) {
+                    if (this.matrix[r][c] == 'c') {
+                        coinMap.push({
+                            row: r,
+                            col: c
+                        })
+                    }
+                }
+            }
+
+            this.matrixCopy[0][0] = '.'
+            this.matrixCopy[this.row][this.col] = '.'
+
+            flag = true
+            for (let i = 0; i < coinMap.length; i++) {
+                this.printAnyMatrix(this.matrixCopy)
+                flag = this.checkPath(0,0,coinMap[i].row, coinMap[i].col, this.matrixCopy, 1)
+                
+                if (!flag){
+                    this.printAnyMatrix(this.matrixCopy)
+                    console.log('coinMap[i].row', coinMap[i].row)
+                    console.log('coinMap[i].col',  coinMap[i].col)
+                    break
+                } 
+                this.matrixCopy = this.copyMatrix()
+            }
+
+            this.print()
+        }
+        return true
+    }
+
+    copyMatrix(){
+        let matrixCopy = [] 
+        for (let r = 0; r < this.matrix.length; r++) {
+            matrixCopy.push([])
+            for (let c = 0; c < this.matrix[r].length; c++) {
+                matrixCopy[r].push(this.matrix[r][c])
+            }
+        }
+        return matrixCopy
+    }
+
+    didComputerTookMyCoin = (comp) => {
+        let otherComp = comp.id == 1 ? this.player2 : this.player1
+
+        let compClosestCoin = JSON.stringify(comp.CompClosestCoin)
+        let lastCoinLocation = JSON.stringify(otherComp.lastCoinLocation)
+        let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
+
+        if (didPlayerTookCompCoin){
+            comp.clearTimeoutArry.forEach(setTimeoutMove => {
+                clearTimeout(setTimeoutMove)
+            })
+            comp.clearTimeoutArry = []
+            return true
+        }
+        return false
+    }
+
+    didPlayerTookMyCoin = (player, comp) => {
+        let lastCoinLocation = JSON.stringify(player.lastCoinLocation)
+        let compClosestCoin = JSON.stringify(comp.compClosestCoin)
+        let didPlayerTookCompCoin = Object.is(lastCoinLocation, compClosestCoin)
+
+        if (didPlayerTookCompCoin){
+            comp.clearTimeoutArry.forEach(setTimeoutMove => {
+                clearTimeout(setTimeoutMove)
+            })
+            comp.clearTimeoutArry = []
+            computer(GoldRushBoard, comp.clearTimeoutArry, comp)
+        }
+    }
+    
     
 }
