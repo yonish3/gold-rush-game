@@ -92,8 +92,10 @@ $('#generateBoard').on('click', function () {
     
 })
 
-$(function(){
+//$(function(){
     $(document).on('keypress', function(e){
+        
+        if(movementFlag){
         if (e.which == 119 || e.which == 97 || e.which == 115 || e.which == 100) {
             playerMoving = player1
             if(player1.isComp) e.which = false
@@ -102,7 +104,6 @@ $(function(){
             if(player2.isComp) e.which = false
         }
 
-        if(movementFlag){
             switch (e.which) {
                 case 119 : case 105:
                     GoldRushBoard.movePlayer(playerMoving,'up')
@@ -150,5 +151,5 @@ $(function(){
                    
     })
 
-})
+//})
 
