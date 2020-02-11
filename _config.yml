@@ -1,1 +1,11 @@
 theme: jekyll-theme-time-machine
+lsi: false
+safe: true
+source: https://yonish3.github.io/gold-rush-game
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
