@@ -57,7 +57,7 @@ class Renderer{
             if(player1 == player2 ){
                 $('#board').append(`
                     <div id="winDiv">
-                        <h1 align="center" id="win">Draw</h1>
+                        <h1 align="center" id="win">      Draw     </h1>
                         <h1 align="center" id="win">${player1} VS ${player2}</h1>
                     </div>
                     `)
