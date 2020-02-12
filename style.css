@@ -60,18 +60,18 @@ h1{
     display: grid;
     height: 45vw;
     width: 45vw;
-    border: 5px solid antiquewhite;
+    /* border: 5px solid lightgray; */
     margin: 10px;
 }
 
 .brick {
-    background-color: brown;
+    background-color: #c02739;
     border: 1px solid black;
 }
 
 .path{
     display: grid;
-    background-color: turquoise;
+    background-color: #192965;
     border: 1px solid black;
     justify-items: center;
     align-items: center;
@@ -156,18 +156,18 @@ img{
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #ffcc00;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
 }
 
 #generateBoard:hover {
-    background-color: #3e8e41
+    background-color: #f8b400
 }
 
 #generateBoard:active {
-    background-color: #3e8e41;
+    background-color: #f8b400;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
