@@ -23,13 +23,13 @@ class Renderer{
                     case 1: 
                         $('#board').append(
                             `<div class='path' style="font-size: ${3*playerSizeRatio}em">
-                                <i class="fas fa-camera fa-grin-beam" style="color: green;"></i>
+                                <i class="fas fa-camera fa-grin-beam" style="color: #ffa41b;"></i>
                             </div>`)
                         break;
                     case 2:
                         $('#board').append(
                             `<div class='path' style="font-size: ${3*playerSizeRatio}em">
-                                <i class="fas fa-camera fa-grin-beam" style="color: blue;"></i>
+                                <i class="fas fa-camera fa-grin-beam" style="color: #21bf73;"></i>
                             </div>`)
                         break;
                     case '.': 
@@ -57,7 +57,7 @@ class Renderer{
             if(player1 == player2 ){
                 $('#board').append(`
                     <div id="winDiv">
-                        <h1 align="center" id="win">Draw</h1>
+                        <h1 align="center" id="win">      Draw     </h1>
                         <h1 align="center" id="win">${player1} VS ${player2}</h1>
                     </div>
                     `)

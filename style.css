@@ -1,8 +1,10 @@
 #container{
     
     display: grid;
-    grid-template-rows:  5vw 5vw 8vw 12vw 60vw 6vw;
-    grid-template-columns: 20vw 30vw 1vw 30vw 20vw;
+
+    grid-template-rows:  auto auto auto auto auto;
+    grid-template-columns:  auto auto auto auto auto;
+ 
     grid-template-areas: 
     "h   h      h    h      h"
     "e1  inr    e3   inc    e2"
@@ -10,7 +12,6 @@
     "e1  bt     bt   bt     e2"
     "p1  br     br   br     p2"
     "f   f      f    f      f";
-    background-color: lightgray;
     justify-items: center;
 }
 
@@ -35,10 +36,7 @@ h1{
 
 #winDiv{
     position: absolute;
-    top: 70%;
-    left: 40%;
-    /* opacity: 85%;
-    color: darkorange; */
+    margin: 150px;
 }
 
 #win{
@@ -49,8 +47,9 @@ h1{
 
 #countDown{
     position: absolute;
-    top: 70%;
-    left: 50%;
+    margin: 190px;
+    left: 225px;
+    margin-right: 60px;
     opacity: 85%;
     color: darkorange;
     font-size: 8em;
@@ -59,20 +58,20 @@ h1{
 #board{ 
     grid-area: br;
     display: grid;
-    width: 40vw;
-    height: 40vw;
-    border: 5px solid antiquewhite;
-
+    height: 45vw;
+    width: 45vw;
+    /* border: 5px solid lightgray; */
+    margin: 10px;
 }
 
 .brick {
-    background-color: brown;
+    background-color: #c02739;
     border: 1px solid black;
 }
 
 .path{
     display: grid;
-    background-color: turquoise;
+    background-color: #192965;
     border: 1px solid black;
     justify-items: center;
     align-items: center;
@@ -106,6 +105,7 @@ input{
     margin: auto;
     align-self: center;
     justify-self: center;
+    margin: 10px;
 }
 
 #player1-Options{
@@ -156,22 +156,29 @@ img{
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #ffcc00;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
 }
 
 #generateBoard:hover {
-    background-color: #3e8e41
+    background-color: #f8b400
 }
 
 #generateBoard:active {
-    background-color: #3e8e41;
+    background-color: #f8b400;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+#goldIcon{
+    width: 15%;
+    position: relative;
+    left: 45%;
+    margin: 15px;
 }
