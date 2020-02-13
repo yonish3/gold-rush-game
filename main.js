@@ -106,12 +106,12 @@ $(document).on('keypress', function(e){
                 Render.updateScore(playerMoving)
                 break;
             case 97 : case 106:
-                GoldRushBoard.movePlayer(playerMoving,'down')
+                GoldRushBoard.movePlayer(playerMoving,'left')
                 Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                 Render.updateScore(playerMoving)
                 break;
             case 115: case 107:
-                GoldRushBoard.movePlayer(playerMoving,'left')
+                GoldRushBoard.movePlayer(playerMoving,'down')
                 Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                 Render.updateScore(playerMoving)
                 break;
