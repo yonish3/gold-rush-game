@@ -1,98 +1,217 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<link rel="stylesheet" href="style.css">
+<script src="https://kit.fontawesome.com/279da6745c.js" crossorigin="anonymous"></script>
+<title>The Gold Rush</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/279da6745c.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/279da6745c.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    
 </head>
-<body>
-    <div id = "container">
-        <h1>The Gold Rush</h1>
+<body class="w3-light-grey">
 
-        <div id ="rowInputDiv">
-            <label for="rowInput">Rows: </label>
-            <input id='rowInput' type="text">
-        </div>
+<div class="w3-content" style="max-width:1400px">
 
-        <div id ="colInputDiv">
-            <label for="colInput">Columns: </label>
-            <input id='colInput' type="text">
-        </div>
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>Maze Game project</b></h1>
+  <p>Welcome to the project page of <span class="w3-tag">The Gold Rush</span></p>
+</header>
 
-        <div id ="player1-Options">
-            <div id="selectPlayer1">
-                <label for="dropDownPlayer1">Player 1:</label>
-                <select id="dropDownPlayer1">
-                    <option value="computer">Computer</option>
-                    <option value="human">Human</option>
-                </select>
-            </div>
-            <div id="comp1-OptionsDiv">
-                <label for="speed1">Speed: </label>
-                <select id="speed1">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    
-                </select>
-                <label for="algorithm">Algorithm: </label>
-                <select id="algorithm">
-                    <option value="DFS">DFS</option>
-                </select>
-            </div>
-        </div>
+<!-- Grid -->
+<div class="w3-row">
 
-        <div id = "player2-Options">
-            <div id="selectPlayer2">
-                <label for="dropDownPlayer2">Player 2:</label>
-                <select id="dropDownPlayer2">
-                    <option value="computer">Computer</option>
-                    <option value="human">Human</option>
-                </select>
-            </div>
-            <div id="comp2-OptionsDiv">
-                <label for="speed2">Speed: </label>
-                <select id="speed2">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label for="algorithm">Algorithm: </label>
-                <select id="algorithm">
-                    <option value="DFS">DFS</option>
-                </select>
-            </div>
-        </div>
-
-        <button id='generateBoard' onclick="window.location.href='#board'">Generate Board</button>
-        
-        <div id = 'player1'>
-            <h3>Player 1</h2>
-            <h3>Score: 0</h3>
-        </div>
-        <div id = 'player2'>
-            <h3>Player 2</h3>
-            <h3>Score: 0</h3>
-        </div>
-        <div id = 'board'></div>
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <img id="goldIcon" src="gold-512.png" alt="Gold" style="width:10%" left="100px">
+    <div class="w3-container">
+        <center><h1><b>The Gold Rush Game</b></h1></center><hr>
     </div>
+
+    <div class="w3-container">
+        <div id = "container">
+    
+            <div id ="rowInputDiv">
+                <label for="rowInput">Rows: </label>
+                <input id='rowInput' type="text">
+            </div>
+    
+            <div id ="colInputDiv">
+                <label for="colInput">Columns: </label>
+                <input id='colInput' type="text">
+            </div>
+    
+            <div id ="player1-Options">
+                <div id="selectPlayer1">
+                    <label for="dropDownPlayer1">Player 1:</label>
+                    <select id="dropDownPlayer1">
+                        <option value="computer">Computer</option>
+                        <option value="human">Human</option>
+                    </select>
+                </div>
+                <div id="comp1-OptionsDiv">
+                    <label for="speed1">Speed: </label>
+                    <select id="speed1">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        
+                    </select>
+                    <label for="algorithm">Algorithm: </label>
+                    <select id="algorithm">
+                        <option value="DFS">DFS</option>
+                    </select>
+                </div>
+            </div>
+    
+            <div id = "player2-Options">
+                <div id="selectPlayer2">
+                    <label for="dropDownPlayer2">Player 2:</label>
+                    <select id="dropDownPlayer2">
+                        <option value="computer">Computer</option>
+                        <option value="human">Human</option>
+                    </select>
+                </div>
+                <div id="comp2-OptionsDiv">
+                    <label for="speed2">Speed: </label>
+                    <select id="speed2">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="algorithm">Algorithm: </label>
+                    <select id="algorithm">
+                        <option value="DFS">DFS</option>
+                    </select>
+                </div>
+            </div>
+    
+            <button id='generateBoard' onclick="window.location.href='#board'">Generate Board</button>
+            
+            <div id = 'player1'>
+                <h3>Player 1</h2>
+                <h3>Score: 0</h3>
+            </div>
+            <div id = 'player2'>
+                <h3>Player 2</h3>
+                <h3>Score: 0</h3>
+            </div>
+            <div id = 'board'></div>
+        </div>
+    
+    </div>
+  </div>
+  <hr>
+  </div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card w3-margin w3-margin-top">
+    <div class="w3-container w3-white">
+      <h4><b>About this project</b></h4>
+      <p>This game is using only JavaScript to render and mimic computer moves.
+        The algorithm is based on <a href="https://en.wikipedia.org/wiki/Breadth-first_search" target="_blank">DFS</a>, which is implemented using a recursive function.  
+        </p>
+            <p>Link to <a href="https://github.com/yonish3/gold-rush-game" target="_blank">GitHub repository</a></p>
+        <h6><b>General structure of generating a matrix</b></h6>
+        <ol>
+            <li>A random matrix is generated with coins and walls</li>
+            <li>Then DFS algorithm is initiated in a while loop, the loop is braked once the following 2 criteria are fulfilled:</li>
+            <ul>
+                <li>Player 1 has a clear path to reach Player 2</li>
+                <li>Players have a clear path to every gold coin in the matrix</li>
+            </ul>
+        </ol>
+        <h6><b>General structure of computer moves</b></h6>
+        <ol>
+            <li>An array of gold coins is generated</li>
+            <li>Then the closest coin to the player (computer) is being calculated using a heuristic method.</li>
+            <li>The path to that coin is calculated using DFS algorithm, which is initiated step by step using setTimeout async function</li>
+            <li>If the target coin is taken by the other player, or the other player is blocking the way, all async functions are canceled and a new path is calculated</li>
+        </ol>
+
+    </div>
+  </div><hr>
+  
+  <!-- Posts -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Next steps in the project</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+            <span class="w3-large">Next items to develop</span><br>
+            <ul>
+                <li>Add a <a href="https://en.wikipedia.org/wiki/Breadth-first_search" target="_blank">BFS</a> option for computer</li>
+                <li>Improve design</li>
+                <li>Develop a mobile responsive design</li>
+            </ul>
+        </li>
+        <li class="w3-padding-16">
+        <span class="w3-large">Bug fix/improvements </span><br>
+        <ul>
+            <li>Computer doesn't regenerate path if blocked by another player</li>
+            <li>Score doesn't adjust zero until a new coin is collected</li>
+        </ul>
+      </li>
+       
+    </ul>
+  </div>
+  <hr> 
+ 
+  <!-- Labels / tags -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+    <p>
+      <span class="w3-tag w3-black w3-margin-bottom">javaScript</span> 
+      <span class="w3-tag w3-black w3-margin-bottom">jQuery</span> 
+      <span class="w3-tag w3-black w3-margin-bottom">HTML</span> 
+      <span class="w3-tag w3-black w3-margin-bottom">DFS</span> 
+      <span class="w3-tag w3-black w3-margin-bottom">Recursion</span>
+    </p>
+    </div>
+  </div>
+  
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <p>Powered by <a href="https://github.com/yonish3/gold-rush-game" target="_blank">GitHub</a></p>
+</footer>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -101,5 +220,4 @@
 <script src="GoldRush.js"></script>
 <script src="Renderer.js"></script>
 <script src="main.js"></script>
-
 </html>
