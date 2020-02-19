@@ -91,31 +91,33 @@ $('#generateBoard').on('click', function () {
 $(document).on('keypress', function(e){
 
     if(movementFlag){
-    if (e.which == 119 || e.which == 97 || e.which == 115 || e.which == 100) {
-        playerMoving = player1
-        if(player1.isComp) e.which = false
+    if (e.which == 119 || e.which == 97 || e.which == 115 || e.which == 100 ||
+        e.which == 39 || e.which == 1513 || e.which == 1490 || e.which == 1491
+        ) {
+            playerMoving = player1
+            if(player1.isComp) e.which = false
     } else {
         playerMoving = player2
         if(player2.isComp) e.which = false
     }
 
         switch (e.which) {
-            case 119 : case 105:
+            case 119 : case 105: case 39: case 143: case 1503: 
                 GoldRushBoard.movePlayer(playerMoving,'up')
                 Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                 Render.updateScore(playerMoving)
                 break;
-            case 97 : case 106:
+            case 97 : case 106: case 153: case 135: case 1513: case 1495:
                 GoldRushBoard.movePlayer(playerMoving,'left')
                 Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                 Render.updateScore(playerMoving)
                 break;
-            case 115: case 107:
+            case 115: case 107: case 131: case 140: case 1491: case 1500:
                 GoldRushBoard.movePlayer(playerMoving,'down')
                 Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                 Render.updateScore(playerMoving)
                 break;
-            case 100 : case 108:
+            case 100 : case 108: case 138: case 129: case 1498: case 1490:
                 GoldRushBoard.movePlayer(playerMoving,'right')
                 Render.generateMatrix(rowInput, colInput, GoldRushBoard)
                 Render.updateScore(playerMoving)
